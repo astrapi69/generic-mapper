@@ -109,38 +109,6 @@ public interface EntityDOMapper<E, DO>
 	};
 
 	/**
-	 * Maps the given entity object to a domain object.
-	 *
-	 * @param entity
-	 *            the entity
-	 * @return the domain object
-	 * @deprecated use instead method <code>toDto</code><br>
-	 *             <br>
-	 *             Note: will be removed on next minor version
-	 */
-	@Deprecated
-	default DO toDomainObject(final @NonNull E entity)
-	{
-		return toDto(entity);
-	};
-
-	/**
-	 * Maps the given list of entity objects to a list of domain objects.
-	 *
-	 * @param entities
-	 *            the entities
-	 * @return the list of domain objects.
-	 * @deprecated use instead method <code>toDtos</code><br>
-	 *             <br>
-	 *             Note: will be removed on next minor version
-	 */
-	@Deprecated
-	default List<DO> toDomainObjects(final @NonNull Collection<E> entities)
-	{
-		return toDtos(entities);
-	};
-
-	/**
 	 * Maps the given entity object to a DTO object
 	 *
 	 * @param entity

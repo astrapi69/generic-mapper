@@ -4,6 +4,10 @@
 Version 1.2-SNAPSHOT
 -------------
 
+CHANGED:
+
+- removed methods toDomainObject and toDomainObjects that was tagged as deprecated
+
 Version 1.1
 -------------
 
