@@ -1,6 +1,14 @@
 ## Change log
 ----------------------
 
+Version 2
+-------------
+
+CHANGED:
+
+- removed methods toDomainObject and toDomainObjects that was tagged as deprecated
+- renamed EntityDOMapper to GenericMapper and AbstractEntityDOMapper to AbstractGenericMapper
+
 Version 1.1
 -------------
 

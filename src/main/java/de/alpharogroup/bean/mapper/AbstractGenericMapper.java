@@ -37,7 +37,7 @@ import lombok.Getter;
 import lombok.NonNull;
 
 /**
- * The abstract class {@link AbstractEntityDOMapper} provides an base implementation for mapping
+ * The abstract class {@link AbstractGenericMapper} provides an base implementation for mapping
  * entities to domain objects and back.
  *
  * @param <E>
@@ -45,20 +45,20 @@ import lombok.NonNull;
  * @param <DO>
  *            the generic type
  */
-public abstract class AbstractEntityDOMapper<E, DO> implements EntityDOMapper<E, DO>
+public abstract class AbstractGenericMapper<E, DO> implements GenericMapper<E, DO>
 {
 
 	/** The domain object class. */
 	@SuppressWarnings("unchecked")
 	@Getter
 	private final Class<DO> domainObjectClass = (Class<DO>)TypeArgumentsExtensions
-		.getTypeArgument(AbstractEntityDOMapper.class, this.getClass(), 1);
+		.getTypeArgument(AbstractGenericMapper.class, this.getClass(), 1);
 
 	/** The entity class. */
 	@SuppressWarnings("unchecked")
 	@Getter
 	private final Class<E> entityClass = (Class<E>)TypeArgumentsExtensions
-		.getTypeArgument(AbstractEntityDOMapper.class, this.getClass(), 0);
+		.getTypeArgument(AbstractGenericMapper.class, this.getClass(), 0);
 
 	/**
 	 * The mapper instance.
@@ -67,20 +67,20 @@ public abstract class AbstractEntityDOMapper<E, DO> implements EntityDOMapper<E,
 	private final Mapper mapper;
 
 	/**
-	 * Instantiates a new {@link AbstractEntityDOMapper} object
+	 * Instantiates a new {@link AbstractGenericMapper} object
 	 */
-	public AbstractEntityDOMapper()
+	public AbstractGenericMapper()
 	{
 		this(Collections.<String> emptyList());
 	}
 
 	/**
-	 * Instantiates a new {@link AbstractEntityDOMapper} object
+	 * Instantiates a new {@link AbstractGenericMapper} object
 	 *
 	 * @param mappingFiles
 	 *            the mapping files
 	 */
-	public AbstractEntityDOMapper(final @NonNull List<String> mappingFiles)
+	public AbstractGenericMapper(final @NonNull List<String> mappingFiles)
 	{
 		mapper = newMapper(mappingFiles);
 	}
