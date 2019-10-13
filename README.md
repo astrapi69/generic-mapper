@@ -1,4 +1,3 @@
-# generic-mapper
 # Overview
 
 <div align="center">
