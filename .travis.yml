@@ -1,0 +1,17 @@
+# generic-mapper .travis.yml
+
+language: java
+
+cache:
+  directories:
+  - $HOME/.m2
+
+jdk:
+    - openjdk8
+
+notifications:
+    email:
+        recipients:
+            - asterios.raptis@web.de
+        on_failure: always
+
