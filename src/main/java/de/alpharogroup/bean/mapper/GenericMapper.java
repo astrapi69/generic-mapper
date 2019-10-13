@@ -34,7 +34,7 @@ import org.dozer.MappingException;
 import lombok.NonNull;
 
 /**
- * The Interface {@link EntityDOMapper} provides the methods for mapping entities to domain objects
+ * The Interface {@link GenericMapper} provides the methods for mapping entities to domain objects
  * and back.
  *
  * @param <E>
@@ -42,7 +42,7 @@ import lombok.NonNull;
  * @param <DO>
  *            the generic type of the domain object
  */
-public interface EntityDOMapper<E, DO>
+public interface GenericMapper<E, DO>
 {
 
 	/**
