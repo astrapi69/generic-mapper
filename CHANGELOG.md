@@ -10,6 +10,7 @@ ADDED:
 
 CHANGED:
 
+- update parent version to 5.3
 - made all methods null safe
 
 Version 1
