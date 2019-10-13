@@ -4,6 +4,14 @@
 Version 1.1-SNAPSHOT
 -------------
 
+ADDED:
+  
+- added new methods to interface EntityDOMapper toDto and toDtos and tagged methods toDomainObject and toDomainObjects as deprecated
+
+CHANGED:
+
+- made all methods null safe
+
 Version 1
 -------------
 

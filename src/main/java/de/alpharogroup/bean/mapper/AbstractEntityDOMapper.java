@@ -67,7 +67,7 @@ public abstract class AbstractEntityDOMapper<E, DO> implements EntityDOMapper<E,
 	private final Mapper mapper;
 
 	/**
-	 * Instantiates a new {@link AbstractEntityDOMapper}.
+	 * Instantiates a new {@link AbstractEntityDOMapper} object
 	 */
 	public AbstractEntityDOMapper()
 	{
@@ -75,7 +75,7 @@ public abstract class AbstractEntityDOMapper<E, DO> implements EntityDOMapper<E,
 	}
 
 	/**
-	 * Instantiates a new {@link AbstractEntityDOMapper}.
+	 * Instantiates a new {@link AbstractEntityDOMapper} object
 	 *
 	 * @param mappingFiles
 	 *            the mapping files
