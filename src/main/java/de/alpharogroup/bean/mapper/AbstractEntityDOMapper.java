@@ -45,9 +45,7 @@ import lombok.NonNull;
  * @param <DO>
  *            the generic type
  */
-public abstract class AbstractEntityDOMapper<E, DO>
-	implements
-		EntityDOMapper<E, DO>
+public abstract class AbstractEntityDOMapper<E, DO> implements EntityDOMapper<E, DO>
 {
 
 	/** The domain object class. */

@@ -40,7 +40,7 @@ import org.dozer.MappingException;
  * @param <DO>
  *            the generic type of the domain object
  */
-public interface EntityDOMapper<E , DO>
+public interface EntityDOMapper<E, DO>
 {
 
 	/**
