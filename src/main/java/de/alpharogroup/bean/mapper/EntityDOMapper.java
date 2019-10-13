@@ -31,6 +31,8 @@ import java.util.List;
 import org.dozer.Mapper;
 import org.dozer.MappingException;
 
+import lombok.NonNull;
+
 /**
  * The Interface {@link EntityDOMapper} provides the methods for mapping entities to domain objects
  * and back.
@@ -79,8 +81,8 @@ public interface EntityDOMapper<E, DO>
 	 * @throws MappingException
 	 *             is thrown if something goes wrong with the mapping process.
 	 */
-	default <T, S> List<T> map(final Collection<S> sources, final Class<T> destinationClass)
-		throws MappingException
+	default <T, S> List<T> map(final @NonNull Collection<S> sources,
+		final @NonNull Class<T> destinationClass) throws MappingException
 	{
 		return MapperExtensions.map(getMapper(), sources, destinationClass);
 	};
@@ -100,7 +102,8 @@ public interface EntityDOMapper<E, DO>
 	 * @throws MappingException
 	 *             is thrown if something goes wrong with the mapping process.
 	 */
-	default <T, S> T map(final S source, final Class<T> destinationClass) throws MappingException
+	default <T, S> T map(final @NonNull S source, final @NonNull Class<T> destinationClass)
+		throws MappingException
 	{
 		return MapperExtensions.map(getMapper(), source, destinationClass);
 	};
@@ -111,14 +114,14 @@ public interface EntityDOMapper<E, DO>
 	 * @param entity
 	 *            the entity
 	 * @return the domain object
+	 * @deprecated use instead method <code>toDto</code><br>
+	 *             <br>
+	 *             Note: will be removed on next minor version
 	 */
-	default DO toDomainObject(final E entity)
+	@Deprecated
+	default DO toDomainObject(final @NonNull E entity)
 	{
-		if (entity != null)
-		{
-			return getMapper().map(entity, getDomainObjectClass());
-		}
-		return null;
+		return toDto(entity);
 	};
 
 	/**
@@ -127,15 +130,43 @@ public interface EntityDOMapper<E, DO>
 	 * @param entities
 	 *            the entities
 	 * @return the list of domain objects.
+	 * @deprecated use instead method <code>toDtos</code><br>
+	 *             <br>
+	 *             Note: will be removed on next minor version
 	 */
-	default List<DO> toDomainObjects(final Collection<E> entities)
+	@Deprecated
+	default List<DO> toDomainObjects(final @NonNull Collection<E> entities)
+	{
+		return toDtos(entities);
+	};
+
+	/**
+	 * Maps the given entity object to a DTO object
+	 *
+	 * @param entity
+	 *            the entity object
+	 * @return the DTO object
+	 */
+	default DO toDto(final @NonNull E entity)
+	{
+		return getMapper().map(entity, getDomainObjectClass());
+	}
+
+	/**
+	 * Maps the given collection of entity objects to a list of DTO objects
+	 *
+	 * @param entities
+	 *            the collection of entities objects
+	 * @return the list of DTO objects
+	 */
+	default List<DO> toDtos(final @NonNull Collection<E> entities)
 	{
 		final List<DO> domainObjects = new ArrayList<>();
-		if ((entities != null) && !entities.isEmpty())
+		if (!entities.isEmpty())
 		{
 			for (final E entity : entities)
 			{
-				domainObjects.add(toDomainObject(entity));
+				domainObjects.add(toDto(entity));
 			}
 		}
 		return domainObjects;
@@ -148,10 +179,10 @@ public interface EntityDOMapper<E, DO>
 	 *            the list of domain objects
 	 * @return the list of entity objects.
 	 */
-	default List<E> toEntities(final Collection<DO> domainObjects)
+	default List<E> toEntities(final @NonNull Collection<DO> domainObjects)
 	{
 		final List<E> entities = new ArrayList<>();
-		if ((domainObjects != null) && !domainObjects.isEmpty())
+		if (!domainObjects.isEmpty())
 		{
 			for (final DO domainObject : domainObjects)
 			{
@@ -168,13 +199,9 @@ public interface EntityDOMapper<E, DO>
 	 *            the domain object
 	 * @return the entity object
 	 */
-	default E toEntity(final DO domainObject)
+	default E toEntity(final @NonNull DO domainObject)
 	{
-		if (domainObject != null)
-		{
-			return getMapper().map(domainObject, getEntityClass());
-		}
-		return null;
+		return getMapper().map(domainObject, getEntityClass());
 	};
 
 }
