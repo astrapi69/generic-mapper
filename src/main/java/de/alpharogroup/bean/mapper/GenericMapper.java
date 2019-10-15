@@ -24,152 +24,57 @@
  */
 package de.alpharogroup.bean.mapper;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import org.dozer.Mapper;
-import org.dozer.MappingException;
 
 import lombok.NonNull;
 
 /**
- * The Interface {@link GenericMapper} provides the methods for mapping entities to domain objects
+ * The Interface {@link GenericMapper} provides the methods for mapping entities to data transfer objects
  * and back.
  *
- * @param <E>
+ * @param <ENTITY>
  *            the element type of the entity object
- * @param <DO>
- *            the generic type of the domain object
+ * @param <DTO>
+ *            the generic type of the data transfer object
  */
-public interface GenericMapper<E, DO>
+public interface GenericMapper<ENTITY, DTO>
 {
 
 	/**
-	 * Gets the domain object class.
-	 *
-	 * @return the domain object class
-	 */
-	Class<DO> getDomainObjectClass();
-
-	/**
-	 * Gets the entity class.
-	 *
-	 * @return the entity class
-	 */
-	Class<E> getEntityClass();
-
-	/**
-	 * Gets the mapper.
-	 *
-	 * @return the mapper
-	 */
-	Mapper getMapper();
-
-	/**
-	 * Constructs new instances of destinationClass and performs mapping between from source.
-	 *
-	 * @param <T>
-	 *            the generic type of the destinationClass
-	 * @param <S>
-	 *            the generic type of the source
-	 * @param sources
-	 *            the collection of source objects
-	 * @param destinationClass
-	 *            the destination class
-	 * @return the new instance of destinationClass mapped to source object.
-	 * @throws MappingException
-	 *             is thrown if something goes wrong with the mapping process.
-	 */
-	default <T, S> List<T> map(final @NonNull Collection<S> sources,
-		final @NonNull Class<T> destinationClass) throws MappingException
-	{
-		return MapperExtensions.map(getMapper(), sources, destinationClass);
-	};
-
-	/**
-	 * Constructs new instance of destinationClass and performs mapping between from source.
-	 *
-	 * @param <T>
-	 *            the generic type of the destinationClass
-	 * @param <S>
-	 *            the generic type of the source
-	 * @param source
-	 *            the source
-	 * @param destinationClass
-	 *            the destination class
-	 * @return the new instance of destinationClass mapped to source object.
-	 * @throws MappingException
-	 *             is thrown if something goes wrong with the mapping process.
-	 */
-	default <T, S> T map(final @NonNull S source, final @NonNull Class<T> destinationClass)
-		throws MappingException
-	{
-		return MapperExtensions.map(getMapper(), source, destinationClass);
-	};
-
-	/**
-	 * Maps the given entity object to a DTO object
+	 * Maps the given entity object to a data transfer object
 	 *
 	 * @param entity
 	 *            the entity object
-	 * @return the DTO object
+	 * @return the data transfer object
 	 */
-	default DO toDto(final @NonNull E entity)
-	{
-		return getMapper().map(entity, getDomainObjectClass());
-	}
+	DTO toDto(final @NonNull ENTITY entity);
 
 	/**
-	 * Maps the given collection of entity objects to a list of DTO objects
+	 * Maps the given collection of entity objects to a list of data transfer objects
 	 *
 	 * @param entities
 	 *            the collection of entities objects
-	 * @return the list of DTO objects
+	 * @return the list of data transfer objects
 	 */
-	default List<DO> toDtos(final @NonNull Collection<E> entities)
-	{
-		final List<DO> domainObjects = new ArrayList<>();
-		if (!entities.isEmpty())
-		{
-			for (final E entity : entities)
-			{
-				domainObjects.add(toDto(entity));
-			}
-		}
-		return domainObjects;
-	};
+	List<DTO> toDtos(final @NonNull Collection<ENTITY> entities);
 
 	/**
-	 * Maps the given list of domain objects to a list of entity objects.
+	 * Maps the given list of data transfer objects to a list of entity objects
 	 *
-	 * @param domainObjects
-	 *            the list of domain objects
+	 * @param dtos
+	 *            the list of data transfer objects
 	 * @return the list of entity objects.
 	 */
-	default List<E> toEntities(final @NonNull Collection<DO> domainObjects)
-	{
-		final List<E> entities = new ArrayList<>();
-		if (!domainObjects.isEmpty())
-		{
-			for (final DO domainObject : domainObjects)
-			{
-				entities.add(toEntity(domainObject));
-			}
-		}
-		return entities;
-	};
+	List<ENTITY> toEntities(final @NonNull Collection<DTO> dtos);
 
 	/**
-	 * Maps the given domain object to a entity object.
+	 * Maps the given data transfer object to a entity object.
 	 *
-	 * @param domainObject
-	 *            the domain object
+	 * @param dto
+	 *            the data transfer object
 	 * @return the entity object
 	 */
-	default E toEntity(final @NonNull DO domainObject)
-	{
-		return getMapper().map(domainObject, getEntityClass());
-	};
+	ENTITY toEntity(final @NonNull DTO dto);
 
 }

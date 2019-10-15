@@ -38,20 +38,20 @@ import lombok.NonNull;
 
 /**
  * The abstract class {@link AbstractGenericMapper} provides an base implementation for mapping
- * entities to domain objects and back.
+ * entities to data transfer objects and back.
  *
  * @param <E>
  *            the element type
  * @param <DO>
  *            the generic type
  */
-public abstract class AbstractGenericMapper<E, DO> implements GenericMapper<E, DO>
+public abstract class AbstractGenericMapper<E, DO> implements DozerGenericMapper<E, DO>
 {
 
-	/** The domain object class. */
+	/** The data transfer object class. */
 	@SuppressWarnings("unchecked")
 	@Getter
-	private final Class<DO> domainObjectClass = (Class<DO>)TypeArgumentsExtensions
+	private final Class<DO> dtoClass = (Class<DO>)TypeArgumentsExtensions
 		.getTypeArgument(AbstractGenericMapper.class, this.getClass(), 1);
 
 	/** The entity class. */
@@ -71,7 +71,7 @@ public abstract class AbstractGenericMapper<E, DO> implements GenericMapper<E, D
 	 */
 	public AbstractGenericMapper()
 	{
-		this(Collections.<String> emptyList());
+		this(Collections.emptyList());
 	}
 
 	/**
@@ -92,7 +92,7 @@ public abstract class AbstractGenericMapper<E, DO> implements GenericMapper<E, D
 			@Override
 			protected void configure()
 			{
-				mapping(getEntityClass(), getDomainObjectClass(), TypeMappingOptions.mapNull(false),
+				mapping(getEntityClass(), getDtoClass(), TypeMappingOptions.mapNull(false),
 					TypeMappingOptions.mapEmptyString(false));
 			}
 
