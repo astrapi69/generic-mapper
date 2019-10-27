@@ -34,8 +34,8 @@ import org.dozer.MappingException;
 import lombok.NonNull;
 
 /**
- * The Interface {@link DozerGenericMapper} provides the methods for mapping entities to data transfer objects
- * and back.
+ * The Interface {@link DozerGenericMapper} provides the methods for mapping entities to data
+ * transfer objects and back.
  *
  * @param <ENTITY>
  *            the element type of the entity object

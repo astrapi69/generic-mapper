@@ -30,8 +30,8 @@ import java.util.List;
 import lombok.NonNull;
 
 /**
- * The Interface {@link GenericMapper} provides the methods for mapping entities to data transfer objects
- * and back.
+ * The Interface {@link GenericMapper} provides the methods for mapping entities to data transfer
+ * objects and back.
  *
  * @param <ENTITY>
  *            the element type of the entity object
