@@ -1,6 +1,17 @@
 ## Change log
 ----------------------
 
+Version 2.1
+-------------
+
+ADDED:
+  
+- added new interface DozerGenericMapper which holds dozer specific default methods
+
+CHANGED:
+
+- removed dozer specific methods from GenericMapper and moved to new interface DozerGenericMapper
+
 Version 2
 -------------
 
