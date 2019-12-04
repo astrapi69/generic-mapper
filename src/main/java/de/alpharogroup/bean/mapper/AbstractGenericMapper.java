@@ -71,7 +71,7 @@ public abstract class AbstractGenericMapper<E, DO> implements DozerGenericMapper
 	 */
 	public AbstractGenericMapper()
 	{
-		this(Collections.emptyList());
+		this(Collections.singletonList("uuid-mapping.xml"));
 	}
 
 	/**

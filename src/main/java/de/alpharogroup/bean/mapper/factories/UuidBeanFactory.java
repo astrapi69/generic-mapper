@@ -22,43 +22,25 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.bean.mapper;
+package de.alpharogroup.bean.mapper.factories;
 
-import java.util.Collections;
+import java.util.UUID;
 
-import org.dozer.DozerBeanMapper;
+import org.dozer.BeanFactory;
 
-/**
- * The class {@link DozerBeanMapperSingleton} holds a single instance of the class
- * {@linkplain DozerBeanMapper}.
- */
-public final class DozerBeanMapperSingleton
+public class UuidBeanFactory implements BeanFactory
 {
 
-	/** The only single one instance. */
-	private static final DozerBeanMapper instance;
-
-	/** The initialize block to initialize the instance */
-	static
+	@Override
+	public Object createBean(Object sourceBean, Class<?> destinationType, String mapId)
 	{
-		instance = new DozerBeanMapper();
-		instance.setMappingFiles(Collections.singletonList("uuid-mapping.xml"));
-	}
-
-	/**
-	 * Gets the single one instance of the {@linkplain DozerBeanMapper} object.
-	 *
-	 * @return single one instance of the {@linkplain DozerBeanMapper} object.
-	 */
-	public static DozerBeanMapper get()
-	{
-		return instance;
-	}
-
-	/**
-	 * Instantiates a new {@link DozerBeanMapperSingleton}.
-	 */
-	private DozerBeanMapperSingleton()
-	{
+		if (sourceBean == null)
+		{
+			return null;
+		}
+		UUID source = (UUID)sourceBean;
+		UUID destination = new UUID(source.getMostSignificantBits(),
+			source.getLeastSignificantBits());
+		return destination;
 	}
 }

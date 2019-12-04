@@ -4,7 +4,14 @@
 Version 2.2-SNAPSHOT
 -------------
 
+ADDED:
+  
+- added new mapping xml file for initialize uuid objects
 
+CHANGED:
+
+- update parent version to 5.5
+- update dependency jobj-core to version 3.3
 
 Version 2.1
 -------------
