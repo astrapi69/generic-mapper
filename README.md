@@ -55,7 +55,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- GENERIC-MAPPER version -->
-		<generic-mapper.version>2.1</generic-mapper.version>
+		<generic-mapper.version>2.2</generic-mapper.version>
 			...
 	</properties>
 			...
@@ -69,6 +69,24 @@ Than you can add the dependency to your dependencies:
 			</dependency>
 			...
 		</dependencies>
+
+	
+## gradle dependency
+
+Add the following gradle dependency to your project `build.gradle` in the dependencies section if you want to import the core functionality of generic-mapper:
+
+```
+ext {
+			...
+    genericMapperVersion = '2.2'
+			...
+}
+dependencies {
+			...
+	compile 'de.alpharogroup:generic-mapper:${genericMapperVersion}'
+			...
+}
+```
 
 ## Semantic Versioning
 
