@@ -1,8 +1,8 @@
 /**
  * The MIT License
- *
+ * <p>
  * Copyright (C) 2015 Asterios Raptis
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
  * "Software"), to deal in the Software without restriction, including
@@ -10,10 +10,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -24,14 +24,13 @@
  */
 package de.alpharogroup.bean.mapper;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
+import lombok.NonNull;
 import org.dozer.Mapper;
 import org.dozer.MappingException;
 
-import lombok.NonNull;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * The Interface {@link DozerGenericMapper} provides the methods for mapping entities to data
@@ -111,8 +110,7 @@ public interface DozerGenericMapper<ENTITY, DTO> extends GenericMapper<ENTITY, D
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
-	default DTO toDto(final @NonNull ENTITY entity)
+	@Override default DTO toDto(final @NonNull ENTITY entity)
 	{
 		return getMapper().map(entity, getDtoClass());
 	}
@@ -120,8 +118,7 @@ public interface DozerGenericMapper<ENTITY, DTO> extends GenericMapper<ENTITY, D
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
-	default List<DTO> toDtos(final @NonNull Collection<ENTITY> entities)
+	@Override default List<DTO> toDtos(final @NonNull Collection<ENTITY> entities)
 	{
 		final List<DTO> domainObjects = new ArrayList<>();
 		if (!entities.isEmpty())
@@ -137,8 +134,7 @@ public interface DozerGenericMapper<ENTITY, DTO> extends GenericMapper<ENTITY, D
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
-	default List<ENTITY> toEntities(final @NonNull Collection<DTO> dtos)
+	@Override default List<ENTITY> toEntities(final @NonNull Collection<DTO> dtos)
 	{
 		final List<ENTITY> entities = new ArrayList<>();
 		if (!dtos.isEmpty())
@@ -154,8 +150,7 @@ public interface DozerGenericMapper<ENTITY, DTO> extends GenericMapper<ENTITY, D
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
-	default ENTITY toEntity(final @NonNull DTO dto)
+	@Override default ENTITY toEntity(final @NonNull DTO dto)
 	{
 		return getMapper().map(dto, getEntityClass());
 	}
