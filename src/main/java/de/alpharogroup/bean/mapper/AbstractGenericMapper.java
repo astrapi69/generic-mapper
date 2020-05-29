@@ -28,6 +28,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.dozer.DozerBeanMapper;
+import org.dozer.DozerBeanMapperSingletonWrapper;
 import org.dozer.Mapper;
 import org.dozer.loader.api.BeanMappingBuilder;
 import org.dozer.loader.api.TypeMappingOptions;
@@ -71,7 +72,7 @@ public abstract class AbstractGenericMapper<E, DO> implements DozerGenericMapper
 	 */
 	public AbstractGenericMapper()
 	{
-		this(Collections.singletonList("uuid-mapping.xml"));
+		this(Collections.emptyList());
 	}
 
 	/**
@@ -111,14 +112,7 @@ public abstract class AbstractGenericMapper<E, DO> implements DozerGenericMapper
 	 */
 	public Mapper newMapper(final @NonNull List<String> mappingFiles)
 	{
-		final DozerBeanMapper mapper = DozerBeanMapperSingleton.get();
-		if (!mappingFiles.isEmpty())
-		{
-			mapper.setMappingFiles(mappingFiles);
-		}
-		mapper.addMapping(beanMappingBuilder());
-		mapper.setCustomFieldMapper((source, destination, sourceFieldValue, classMap,
-			fieldMapping) -> sourceFieldValue == null);
+		final DozerBeanMapper mapper = DozerBeanMapperSingleton.getInstance();
 		return mapper;
 	}
 

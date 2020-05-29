@@ -24,9 +24,12 @@
  */
 package de.alpharogroup.bean.mapper;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 
 /**
  * The class {@link DozerBeanMapperSingleton} holds a single instance of the class
@@ -36,22 +39,15 @@ public final class DozerBeanMapperSingleton
 {
 
 	/** The only single one instance. */
-	private static final DozerBeanMapper instance;
+	private static DozerBeanMapper instance;
 
-	/** The initialize block to initialize the instance */
-	static
-	{
-		instance = new DozerBeanMapper();
-		instance.setMappingFiles(Collections.singletonList("uuid-mapping.xml"));
-	}
+	public static synchronized DozerBeanMapper getInstance() {
+		if (instance == null) {
+			List<String> mappingFiles = new ArrayList<>();
+			mappingFiles.add("uuid-mapping.xml");
+			instance = new DozerBeanMapper(mappingFiles);
+		}
 
-	/**
-	 * Gets the single one instance of the {@linkplain DozerBeanMapper} object.
-	 *
-	 * @return single one instance of the {@linkplain DozerBeanMapper} object.
-	 */
-	public static DozerBeanMapper get()
-	{
 		return instance;
 	}
 

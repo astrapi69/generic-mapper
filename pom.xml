@@ -11,7 +11,7 @@
 	</parent>
 
 	<artifactId>generic-mapper</artifactId>
-	<version>2.3-SNAPSHOT</version>
+	<version>2.3</version>
 	
 	<name>${project.artifactId}</name>
 	
@@ -22,10 +22,18 @@
 	<url>https://github.com/astrapi69/${project.artifactId}</url>
 	
 	<properties>
+		<!-- LOMBOK version -->
+		<lombok.version>1.18.12</lombok.version>
 		<!-- DOZER version -->
 		<dozer.version>5.5.1</dozer.version>
 		<!-- JOBJ-CORE version -->
-		<jobj-core.version>3.3</jobj-core.version>
+		<jobj-core.version>3.5</jobj-core.version>
+		<!-- BEAN-MAPPER-API version -->
+		<bean-mapper-api.version>1</bean-mapper-api.version>
+		<!-- TEST-OBJECTS version -->
+		<test-objects.version>5.3</test-objects.version>
+		<!-- TESTNG version -->
+		<testng.version>7.1.0</testng.version>
 	</properties>	
 	
 	<licenses>
@@ -67,6 +75,18 @@
 				<artifactId>jobj-core</artifactId>
 				<version>${jobj-core.version}</version>
 			</dependency>
+			<!-- BEAN-MAPPER-API DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>bean-mapper-api</artifactId>
+				<version>${bean-mapper-api.version}</version>
+			</dependency>
+			<!-- TEST-OBJECTS TEST-DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>test-objects</artifactId>
+				<version>${test-objects.version}</version>
+			</dependency>
 
 		</dependencies>
 
@@ -83,8 +103,18 @@
 				<groupId>de.alpharogroup</groupId>
 				<artifactId>jobj-core</artifactId>
 			</dependency>
+			<!-- BEAN-MAPPER-API DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>bean-mapper-api</artifactId>
+			</dependency>
+			<!-- TEST-OBJECTS TEST-DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>test-objects</artifactId>
+				<scope>test</scope>
+			</dependency>
 
 	</dependencies>
-	
 
 </project>
