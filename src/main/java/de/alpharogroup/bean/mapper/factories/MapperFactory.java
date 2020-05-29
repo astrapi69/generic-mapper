@@ -22,29 +22,31 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.bean.mapper;
+package de.alpharogroup.bean.mapper.factories;
 
-import de.alpharogroup.test.objects.Member;
-import de.alpharogroup.test.objects.Person;
-import de.alpharogroup.test.objects.enums.Gender;
-import org.testng.annotations.Test;
+import de.alpharogroup.bean.mapper.DozerBeanMapperSingleton;
+import lombok.NonNull;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 
-import static org.testng.Assert.*;
+import java.util.List;
 
-public class MapperExtensionsTest
+public class MapperFactory
 {
 
-	@Test public void testMap()
+	/**
+	 * Factory method for creating the new {@link Mapper} for the mapping process with the given
+	 * mapping files list. This method is invoked in the constructor and can be overridden so users
+	 * can provide their own mapping process.
+	 *
+	 * @param mappingFiles
+	 *            the mapping files
+	 *
+	 * @return the new {@link Mapper} for the mapping process.
+	 */
+	public static Mapper newMapper(final @NonNull List<String> mappingFiles)
 	{
-	}
-
-	@Test public void testTestMap()
-	{
-		Member actual;
-		Member expected;
-		Person asterix = Person.builder().name("asterix").build();
-		actual = MapperExtensions.map(DozerBeanMapperSingleton.getInstance(), asterix, Member.class);
-		expected = Member.buildMember().about("").name("asterix").gender(Gender.UNDEFINED).married(false).nickname("").build();
-		assertEquals(actual, expected);
+		final DozerBeanMapper mapper = DozerBeanMapperSingleton.getInstance();
+		return mapper;
 	}
 }

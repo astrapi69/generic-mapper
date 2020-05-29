@@ -47,7 +47,6 @@ public final class DozerBeanMapperSingleton
 			mappingFiles.add("uuid-mapping.xml");
 			instance = new DozerBeanMapper(mappingFiles);
 		}
-
 		return instance;
 	}
 
