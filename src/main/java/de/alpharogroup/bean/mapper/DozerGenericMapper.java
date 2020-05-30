@@ -69,10 +69,10 @@ public interface DozerGenericMapper<ENTITY, DTO> extends GenericMapper<ENTITY, D
 	/**
 	 * Constructs new instances of destinationClass and performs mapping between from source.
 	 *
-	 * @param <T>
-	 *            the generic type of the destinationClass
 	 * @param <S>
 	 *            the generic type of the source
+	 * @param <D>
+	 *            the generic type of the destinationClass
 	 * @param sources
 	 *            the collection of source objects
 	 * @param destinationClass
@@ -81,8 +81,9 @@ public interface DozerGenericMapper<ENTITY, DTO> extends GenericMapper<ENTITY, D
 	 * @throws MappingException
 	 *             is thrown if something goes wrong with the mapping process.
 	 */
-	default <T, S> List<T> map(final @NonNull Collection<S> sources,
-		final @NonNull Class<T> destinationClass) throws MappingException
+	@Override
+	default <D, S> List<D> map(final @NonNull Collection<S> sources,
+		final @NonNull Class<D> destinationClass) throws MappingException
 	{
 		return MapperExtensions.map(getMapper(), sources, destinationClass);
 	}
@@ -90,7 +91,7 @@ public interface DozerGenericMapper<ENTITY, DTO> extends GenericMapper<ENTITY, D
 	/**
 	 * Constructs new instance of destinationClass and performs mapping between from source.
 	 *
-	 * @param <T>
+	 * @param <D>
 	 *            the generic type of the destinationClass
 	 * @param <S>
 	 *            the generic type of the source
@@ -102,7 +103,8 @@ public interface DozerGenericMapper<ENTITY, DTO> extends GenericMapper<ENTITY, D
 	 * @throws MappingException
 	 *             is thrown if something goes wrong with the mapping process.
 	 */
-	default <T, S> T map(final @NonNull S source, final @NonNull Class<T> destinationClass)
+	@Override
+	default <D, S> D map(final @NonNull S source, final @NonNull Class<D> destinationClass)
 		throws MappingException
 	{
 		return MapperExtensions.map(getMapper(), source, destinationClass);

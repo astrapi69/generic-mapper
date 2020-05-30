@@ -1,6 +1,21 @@
 ## Change log
 ----------------------
 
+Version 2.3
+-------------
+
+ADDED:
+  
+- added new bean-mapper-api dependency
+- new factory methods for BeanMappingBuilder and DozerBeanMapper created
+
+CHANGED:
+
+- update factory method newMapper in class AbstractGenericMapper 
+- replaced GenericMapper interface with the same name class from the new bean-mapper-api dependency
+- prepare project for migrate to gradle
+- created new unit test class for the class MapperExtensions
+
 Version 2.2
 -------------
 

@@ -27,14 +27,13 @@ package de.alpharogroup.bean.mapper;
 import java.util.Collections;
 import java.util.List;
 
-import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
-import org.dozer.loader.api.BeanMappingBuilder;
-import org.dozer.loader.api.TypeMappingOptions;
 
 import de.alpharogroup.lang.TypeArgumentsExtensions;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.experimental.FieldDefaults;
 
 /**
  * The abstract class {@link AbstractGenericMapper} provides an base implementation for mapping
@@ -45,33 +44,36 @@ import lombok.NonNull;
  * @param <DO>
  *            the generic type
  */
+@Getter
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public abstract class AbstractGenericMapper<E, DO> implements DozerGenericMapper<E, DO>
 {
 
-	/** The data transfer object class. */
+	/**
+	 * The data transfer object class.
+	 */
 	@SuppressWarnings("unchecked")
-	@Getter
-	private final Class<DO> dtoClass = (Class<DO>)TypeArgumentsExtensions
+	Class<DO> dtoClass = (Class<DO>)TypeArgumentsExtensions
 		.getTypeArgument(AbstractGenericMapper.class, this.getClass(), 1);
 
-	/** The entity class. */
+	/**
+	 * The entity class.
+	 */
 	@SuppressWarnings("unchecked")
-	@Getter
-	private final Class<E> entityClass = (Class<E>)TypeArgumentsExtensions
+	Class<E> entityClass = (Class<E>)TypeArgumentsExtensions
 		.getTypeArgument(AbstractGenericMapper.class, this.getClass(), 0);
 
 	/**
 	 * The mapper instance.
 	 */
-	@Getter
-	private final Mapper mapper;
+	Mapper mapper;
 
 	/**
 	 * Instantiates a new {@link AbstractGenericMapper} object
 	 */
 	public AbstractGenericMapper()
 	{
-		this(Collections.singletonList("uuid-mapping.xml"));
+		this(Collections.emptyList());
 	}
 
 	/**
@@ -82,44 +84,7 @@ public abstract class AbstractGenericMapper<E, DO> implements DozerGenericMapper
 	 */
 	public AbstractGenericMapper(final @NonNull List<String> mappingFiles)
 	{
-		mapper = newMapper(mappingFiles);
-	}
-
-	private BeanMappingBuilder beanMappingBuilder()
-	{
-		return new BeanMappingBuilder()
-		{
-			@Override
-			protected void configure()
-			{
-				mapping(getEntityClass(), getDtoClass(), TypeMappingOptions.mapNull(false),
-					TypeMappingOptions.mapEmptyString(false));
-			}
-
-		};
-	}
-
-	/**
-	 * Factory method for creating the new {@link Mapper} for the mapping process with the given
-	 * mapping files list. This method is invoked in the constructor and can be overridden so users
-	 * can provide their own mapping process.
-	 *
-	 * @param mappingFiles
-	 *            the mapping files
-	 *
-	 * @return the new {@link Mapper} for the mapping process.
-	 */
-	public Mapper newMapper(final @NonNull List<String> mappingFiles)
-	{
-		final DozerBeanMapper mapper = DozerBeanMapperSingleton.get();
-		if (!mappingFiles.isEmpty())
-		{
-			mapper.setMappingFiles(mappingFiles);
-		}
-		mapper.addMapping(beanMappingBuilder());
-		mapper.setCustomFieldMapper((source, destination, sourceFieldValue, classMap,
-			fieldMapping) -> sourceFieldValue == null);
-		return mapper;
+		mapper = DozerBeanMapperSingleton.getInstance(getEntityClass(), getDtoClass());
 	}
 
 }

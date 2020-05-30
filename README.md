@@ -55,7 +55,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- GENERIC-MAPPER version -->
-		<generic-mapper.version>2.2</generic-mapper.version>
+		<generic-mapper.version>2.3</generic-mapper.version>
 			...
 	</properties>
 			...
@@ -78,7 +78,7 @@ Add the following gradle dependency to your project `build.gradle` in the depend
 ```
 ext {
 			...
-    genericMapperVersion = '2.2'
+    genericMapperVersion = '2.3'
 			...
 }
 dependencies {
