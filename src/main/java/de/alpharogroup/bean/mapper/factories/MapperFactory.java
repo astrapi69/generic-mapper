@@ -1,8 +1,8 @@
 /**
  * The MIT License
- * <p>
+ *
  * Copyright (C) 2015 Asterios Raptis
- * <p>
+ *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
  * "Software"), to deal in the Software without restriction, including
@@ -10,10 +10,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * <p>
+ *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- * <p>
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -24,17 +24,33 @@
  */
 package de.alpharogroup.bean.mapper.factories;
 
-import lombok.NonNull;
+import java.util.Collections;
+import java.util.List;
+
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.dozer.loader.api.BeanMappingBuilder;
 import org.dozer.loader.api.TypeMappingOptions;
 
-import java.util.Collections;
-import java.util.List;
+import lombok.NonNull;
 
 public class MapperFactory
 {
+
+	public static BeanMappingBuilder newBeanMappingBuilder(final @NonNull Class<?> entityClass,
+		final @NonNull Class<?> dtoClass)
+	{
+		return new BeanMappingBuilder()
+		{
+			@Override
+			protected void configure()
+			{
+				mapping(entityClass, dtoClass, TypeMappingOptions.mapNull(false),
+					TypeMappingOptions.mapEmptyString(false));
+			}
+
+		};
+	}
 
 	/**
 	 * Factory method for creating the new {@link Mapper} for the mapping process. This method is
@@ -53,7 +69,8 @@ public class MapperFactory
 	 * mapping files list. This method is invoked in the constructor and can be overridden so users
 	 * can provide their own mapping process
 	 *
-	 * @param mappingFiles the mapping files
+	 * @param mappingFiles
+	 *            the mapping files
 	 * @return the new {@link Mapper} for the mapping process
 	 */
 	public static Mapper newMapper(final @NonNull List<String> mappingFiles)
@@ -66,9 +83,12 @@ public class MapperFactory
 	 * mapping files list. This method is invoked in the constructor and can be overridden so users
 	 * can provide their own mapping process
 	 *
-	 * @param mappingFiles the mapping files
-	 * @param entityClass  the entity class
-	 * @param dtoClass     the dto class
+	 * @param mappingFiles
+	 *            the mapping files
+	 * @param entityClass
+	 *            the entity class
+	 * @param dtoClass
+	 *            the dto class
 	 * @return the new {@link Mapper} for the mapping process
 	 */
 	public static Mapper newMapper(final @NonNull List<String> mappingFiles,
@@ -76,22 +96,8 @@ public class MapperFactory
 	{
 		final DozerBeanMapper mapper = new DozerBeanMapper(mappingFiles);
 		mapper.addMapping(newBeanMappingBuilder(entityClass, dtoClass));
-		mapper.setCustomFieldMapper(
-			(source, destination, sourceFieldValue, classMap, fieldMapping) -> sourceFieldValue == null);
+		mapper.setCustomFieldMapper((source, destination, sourceFieldValue, classMap,
+			fieldMapping) -> sourceFieldValue == null);
 		return mapper;
-	}
-
-	public static BeanMappingBuilder newBeanMappingBuilder(final @NonNull Class<?> entityClass,
-		final @NonNull Class<?> dtoClass)
-	{
-		return new BeanMappingBuilder()
-		{
-			@Override protected void configure()
-			{
-				mapping(entityClass, dtoClass, TypeMappingOptions.mapNull(false),
-					TypeMappingOptions.mapEmptyString(false));
-			}
-
-		};
 	}
 }
