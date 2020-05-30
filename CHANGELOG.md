@@ -4,6 +4,10 @@
 Version 2.4-SNAPSHOT
 -------------
 
+ADDED:
+ 
+- migrate from maven to gradle as build system
+
 Version 2.3
 -------------
 

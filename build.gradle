@@ -1,0 +1,181 @@
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+    }
+}
+
+plugins {
+    id "io.franzbecker.gradle-lombok" version "4.0.0"
+    id "java"
+    id "maven-publish"
+    id "signing"
+    id "com.github.ben-manes.versions" version "0.28.0"
+    id "com.github.hierynomus.license" version "0.15.0"
+}
+
+apply plugin: "jacoco"
+
+group = "$groupPackage"
+version = "$projectVersion"
+description = "$rootProject.name"
+sourceCompatibility = "$projectSourceCompatibility"
+
+repositories {
+    jcenter()
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+    implementation("net.sf.dozer:dozer:$dozerVersion")
+    implementation("de.alpharogroup:jobj-core:$jobjCoreVersion")
+    implementation("de.alpharogroup:bean-mapper-api:$beanMapperApiVersion")
+    implementation("org.projectlombok:lombok:$lombokVersion")
+    testImplementation("de.alpharogroup:test-objects:$testObjectsVersion")
+    testImplementation("org.testng:testng:$testngVersion")
+}
+
+task sourcesJar(type: Jar) {
+    archiveClassifier.set("sources")
+    from(sourceSets.main.allJava)
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    archiveClassifier.set("javadoc")
+    javadoc.properties.failOnError = true
+}
+
+def releaseVersion = !version.endsWith("SNAPSHOT")
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = "$rootProject.name"
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            pom {
+                name = "$rootProject.name"
+                description = "$projectDescription"
+                url = "$projectScmProviderUrl"+"$projectHolderUsername"+"/"+"$rootProject.name"
+                organization {
+                    name = "$projectOrganizationName"
+                    url = "$projectOrganizationUrl"
+                }
+                issueManagement {
+                    system = "$projectIssueManagementSystem"
+                    url = "$projectScmProviderUrl"+"$projectHolderUsername"+"/"+"$rootProject.name"+"/issues"
+                }
+                licenses {
+                    license {
+                        name = "$projectLicenseName"
+                        url = "$projectLicenseUrl"
+                        distribution = "$projectLicenseDistribution"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "$projectHolderUsername"
+                        name = "Asterios Raptis"
+                    }
+                }
+                scm {
+                    connection = "scm:git:git:@" + "$projectScmProviderDomain" + ":" + "$projectHolderUsername" + "/" + "$rootProject.name" + ".git"
+                    developerConnection = "scm:git:git:@" + "$projectScmProviderDomain" + ":" + "$projectHolderUsername" + "/" + "$rootProject.name" + ".git"
+                    url = "scm:git:git:@" + "$projectScmProviderDomain" + ":" + "$projectHolderUsername" + "/" + "$rootProject.name" + ".git"
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username System.getenv("ossrhUsername") ?: project.property("ossrhUsername")
+                password System.getenv("ossrhPassword") ?: project.property("ossrhPassword")
+            }
+            def releasesRepoUrl = "$projectRepositoriesReleasesRepoUrl"
+            def snapshotsRepoUrl = "$projectRepositoriesSnapshotsRepoUrl"
+            url = releaseVersion ? releasesRepoUrl : snapshotsRepoUrl
+        }
+    }
+}
+
+tasks.withType(GenerateModuleMetadata) {
+    enabled = false
+}
+
+signing {
+    if (releaseVersion) {
+        sign publishing.publications.mavenJava
+    }
+}
+
+javadoc {
+    failOnError = false
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption("html5", true)
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+license {
+    ext.year="2015"
+    ext.owner="Asterios Raptis"
+    header rootProject.file("src/main/resources/LICENSE.txt")
+    excludes(["**/README",
+              "**/README.md",
+              "**/LICENSE",
+              "**/NOTICE",
+              "**/*.xml",
+              "**/*.xsl",
+              "**/*.xsd",
+              "**/*.dtd",
+              "**/*.html",
+              "**/*.jsp",
+              "**/*.jpa",
+              "**/*.sql",
+              "**/*.properties",
+              "**/*.bat",
+              "**/*.gradle",
+              "**/*.MF",
+              "**/*.txt",
+              "**/*.vm",
+              "**/*.log",
+              "**/*.map",
+              "**/*.js.map",
+              "**/*.tmpl",
+              "**/*.js.tmpl",
+              "**/*.editorconfig",
+              "src/test/resources/**",
+              "src/main/resources/**",
+              "out/**",
+              "build/**"])
+}
+
+// workhack for license issue #76
+gradle.startParameter.excludedTaskNames += "licenseMain"
+gradle.startParameter.excludedTaskNames += "licenseTest"
+
+test {
+    useTestNG()
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}
+
+check.dependsOn jacocoTestReport
