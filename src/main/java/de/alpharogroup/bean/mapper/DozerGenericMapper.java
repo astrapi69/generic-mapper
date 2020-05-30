@@ -36,10 +36,8 @@ import java.util.List;
  * The Interface {@link DozerGenericMapper} provides the methods for mapping entities to data
  * transfer objects and back.
  *
- * @param <ENTITY>
- *            the element type of the entity object
- * @param <DTO>
- *            the generic type of the data transfer object
+ * @param <ENTITY> the element type of the entity object
+ * @param <DTO>    the generic type of the data transfer object
  */
 public interface DozerGenericMapper<ENTITY, DTO> extends GenericMapper<ENTITY, DTO>
 {
@@ -68,17 +66,12 @@ public interface DozerGenericMapper<ENTITY, DTO> extends GenericMapper<ENTITY, D
 	/**
 	 * Constructs new instances of destinationClass and performs mapping between from source.
 	 *
-	 * @param <S>
-	 *            the generic type of the source
-	 * @param <D>
-	 *            the generic type of the destinationClass
-	 * @param sources
-	 *            the collection of source objects
-	 * @param destinationClass
-	 *            the destination class
+	 * @param <S>              the generic type of the source
+	 * @param <D>              the generic type of the destinationClass
+	 * @param sources          the collection of source objects
+	 * @param destinationClass the destination class
 	 * @return the new instance of destinationClass mapped to source object.
-	 * @throws MappingException
-	 *             is thrown if something goes wrong with the mapping process.
+	 * @throws MappingException is thrown if something goes wrong with the mapping process.
 	 */
 	default <D, S> List<D> map(final @NonNull Collection<S> sources,
 		final @NonNull Class<D> destinationClass) throws MappingException
@@ -89,17 +82,12 @@ public interface DozerGenericMapper<ENTITY, DTO> extends GenericMapper<ENTITY, D
 	/**
 	 * Constructs new instance of destinationClass and performs mapping between from source.
 	 *
-	 * @param <D>
-	 *            the generic type of the destinationClass
-	 * @param <S>
-	 *            the generic type of the source
-	 * @param source
-	 *            the source
-	 * @param destinationClass
-	 *            the destination class
+	 * @param <D>              the generic type of the destinationClass
+	 * @param <S>              the generic type of the source
+	 * @param source           the source
+	 * @param destinationClass the destination class
 	 * @return the new instance of destinationClass mapped to source object.
-	 * @throws MappingException
-	 *             is thrown if something goes wrong with the mapping process.
+	 * @throws MappingException is thrown if something goes wrong with the mapping process.
 	 */
 	default <D, S> D map(final @NonNull S source, final @NonNull Class<D> destinationClass)
 		throws MappingException

@@ -25,6 +25,7 @@
 package de.alpharogroup.bean.mapper;
 
 import de.alpharogroup.bean.mapper.factories.MapperFactory;
+import lombok.NonNull;
 import org.dozer.DozerBeanMapper;
 
 import java.util.ArrayList;
@@ -49,13 +50,15 @@ public final class DozerBeanMapperSingleton
 	{
 	}
 
-	public static synchronized DozerBeanMapper getInstance()
+	public static synchronized DozerBeanMapper getInstance(final @NonNull Class<?> entityClass,
+		final @NonNull Class<?> dtoClass)
 	{
 		if (instance == null)
 		{
 			List<String> mappingFiles = new ArrayList<>();
 			mappingFiles.add("uuid-mapping.xml");
-			instance = (DozerBeanMapper) MapperFactory.newMapper(mappingFiles);
+			instance = (DozerBeanMapper)MapperFactory
+				.newMapper(mappingFiles, entityClass, dtoClass);
 		}
 		return instance;
 	}

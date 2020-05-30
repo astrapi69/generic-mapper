@@ -24,7 +24,6 @@
  */
 package de.alpharogroup.bean.mapper;
 
-import de.alpharogroup.bean.mapper.factories.MapperFactory;
 import de.alpharogroup.lang.TypeArgumentsExtensions;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -74,12 +73,11 @@ import java.util.List;
 	/**
 	 * Instantiates a new {@link AbstractGenericMapper} object
 	 *
-	 * @param mappingFiles
-	 *            the mapping files
+	 * @param mappingFiles the mapping files
 	 */
 	public AbstractGenericMapper(final @NonNull List<String> mappingFiles)
 	{
-		mapper = MapperFactory.newMapper(mappingFiles);
+		mapper = DozerBeanMapperSingleton.getInstance(getEntityClass(), getDtoClass());
 	}
 
 }

@@ -30,20 +30,31 @@ import org.dozer.Mapper;
 import org.dozer.loader.api.BeanMappingBuilder;
 import org.dozer.loader.api.TypeMappingOptions;
 
+import java.util.Collections;
 import java.util.List;
 
 public class MapperFactory
 {
 
 	/**
+	 * Factory method for creating the new {@link Mapper} for the mapping process. This method is
+	 * invoked in the constructor and can be overridden so users can provide their own mapping
+	 * process
+	 *
+	 * @return the new {@link Mapper} for the mapping process
+	 */
+	public static Mapper newMapper()
+	{
+		return newMapper(Collections.emptyList());
+	}
+
+	/**
 	 * Factory method for creating the new {@link Mapper} for the mapping process with the given
 	 * mapping files list. This method is invoked in the constructor and can be overridden so users
-	 * can provide their own mapping process.
+	 * can provide their own mapping process
 	 *
-	 * @param mappingFiles
-	 *            the mapping files
-	 *
-	 * @return the new {@link Mapper} for the mapping process.
+	 * @param mappingFiles the mapping files
+	 * @return the new {@link Mapper} for the mapping process
 	 */
 	public static Mapper newMapper(final @NonNull List<String> mappingFiles)
 	{
@@ -53,31 +64,32 @@ public class MapperFactory
 	/**
 	 * Factory method for creating the new {@link Mapper} for the mapping process with the given
 	 * mapping files list. This method is invoked in the constructor and can be overridden so users
-	 * can provide their own mapping process.
+	 * can provide their own mapping process
 	 *
-	 * @param mappingFiles
-	 *            the mapping files
-	 *
-	 * @return the new {@link Mapper} for the mapping process.
+	 * @param mappingFiles the mapping files
+	 * @param entityClass  the entity class
+	 * @param dtoClass     the dto class
+	 * @return the new {@link Mapper} for the mapping process
 	 */
-	public static Mapper newMapper(final @NonNull List<String> mappingFiles, final @NonNull Class<?> entityClass, final @NonNull Class<?> dtoClass)
+	public static Mapper newMapper(final @NonNull List<String> mappingFiles,
+		final @NonNull Class<?> entityClass, final @NonNull Class<?> dtoClass)
 	{
 		final DozerBeanMapper mapper = new DozerBeanMapper(mappingFiles);
 		mapper.addMapping(newBeanMappingBuilder(entityClass, dtoClass));
-		mapper.setCustomFieldMapper((source, destination, sourceFieldValue, classMap,
-									 fieldMapping) -> sourceFieldValue == null);
+		mapper.setCustomFieldMapper(
+			(source, destination, sourceFieldValue, classMap, fieldMapping) -> sourceFieldValue == null);
 		return mapper;
 	}
 
-	public static BeanMappingBuilder newBeanMappingBuilder(final @NonNull Class<?> entityClass, final @NonNull Class<?> dtoClass)
+	public static BeanMappingBuilder newBeanMappingBuilder(final @NonNull Class<?> entityClass,
+		final @NonNull Class<?> dtoClass)
 	{
 		return new BeanMappingBuilder()
 		{
-			@Override
-			protected void configure()
+			@Override protected void configure()
 			{
 				mapping(entityClass, dtoClass, TypeMappingOptions.mapNull(false),
-						TypeMappingOptions.mapEmptyString(false));
+					TypeMappingOptions.mapEmptyString(false));
 			}
 
 		};
