@@ -1,8 +1,8 @@
 /**
  * The MIT License
- * <p>
+ *
  * Copyright (C) 2015 Asterios Raptis
- * <p>
+ *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
  * "Software"), to deal in the Software without restriction, including
@@ -10,10 +10,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- * <p>
+ *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- * <p>
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -24,37 +24,43 @@
  */
 package de.alpharogroup.bean.mapper;
 
+import java.util.Collections;
+import java.util.List;
+
+import org.dozer.Mapper;
+
 import de.alpharogroup.lang.TypeArgumentsExtensions;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
-import org.dozer.Mapper;
-
-import java.util.Collections;
-import java.util.List;
 
 /**
  * The abstract class {@link AbstractGenericMapper} provides an base implementation for mapping
  * entities to data transfer objects and back.
  *
- * @param <E>  the element type
- * @param <DO> the generic type
+ * @param <E>
+ *            the element type
+ * @param <DO>
+ *            the generic type
  */
-@Getter @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true) public abstract class AbstractGenericMapper<E, DO>
-	implements DozerGenericMapper<E, DO>
+@Getter
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+public abstract class AbstractGenericMapper<E, DO> implements DozerGenericMapper<E, DO>
 {
 
 	/**
 	 * The data transfer object class.
 	 */
-	@SuppressWarnings("unchecked") Class<DO> dtoClass = (Class<DO>)TypeArgumentsExtensions
+	@SuppressWarnings("unchecked")
+	Class<DO> dtoClass = (Class<DO>)TypeArgumentsExtensions
 		.getTypeArgument(AbstractGenericMapper.class, this.getClass(), 1);
 
 	/**
 	 * The entity class.
 	 */
-	@SuppressWarnings("unchecked") Class<E> entityClass = (Class<E>)TypeArgumentsExtensions
+	@SuppressWarnings("unchecked")
+	Class<E> entityClass = (Class<E>)TypeArgumentsExtensions
 		.getTypeArgument(AbstractGenericMapper.class, this.getClass(), 0);
 
 	/**
@@ -73,7 +79,8 @@ import java.util.List;
 	/**
 	 * Instantiates a new {@link AbstractGenericMapper} object
 	 *
-	 * @param mappingFiles the mapping files
+	 * @param mappingFiles
+	 *            the mapping files
 	 */
 	public AbstractGenericMapper(final @NonNull List<String> mappingFiles)
 	{
