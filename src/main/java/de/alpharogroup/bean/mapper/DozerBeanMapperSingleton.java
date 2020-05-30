@@ -24,6 +24,7 @@
  */
 package de.alpharogroup.bean.mapper;
 
+import de.alpharogroup.bean.mapper.factories.MapperFactory;
 import org.dozer.DozerBeanMapper;
 
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public final class DozerBeanMapperSingleton
 		{
 			List<String> mappingFiles = new ArrayList<>();
 			mappingFiles.add("uuid-mapping.xml");
-			instance = new DozerBeanMapper(mappingFiles);
+			instance = (DozerBeanMapper) MapperFactory.newMapper(mappingFiles);
 		}
 		return instance;
 	}

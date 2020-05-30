@@ -1,12 +1,13 @@
 ## Change log
 ----------------------
 
-Version 2.3
+Version 2.3-SNAPSHOT
 -------------
 
 ADDED:
   
 - added new bean-mapper-api dependency
+- new factory methods for BeanMappingBuilder and DozerBeanMapper created
 
 CHANGED:
 

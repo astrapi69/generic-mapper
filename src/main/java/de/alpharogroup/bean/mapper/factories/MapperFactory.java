@@ -24,10 +24,11 @@
  */
 package de.alpharogroup.bean.mapper.factories;
 
-import de.alpharogroup.bean.mapper.DozerBeanMapperSingleton;
 import lombok.NonNull;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
+import org.dozer.loader.api.BeanMappingBuilder;
+import org.dozer.loader.api.TypeMappingOptions;
 
 import java.util.List;
 
@@ -46,7 +47,39 @@ public class MapperFactory
 	 */
 	public static Mapper newMapper(final @NonNull List<String> mappingFiles)
 	{
-		final DozerBeanMapper mapper = DozerBeanMapperSingleton.getInstance();
+		return new DozerBeanMapper(mappingFiles);
+	}
+
+	/**
+	 * Factory method for creating the new {@link Mapper} for the mapping process with the given
+	 * mapping files list. This method is invoked in the constructor and can be overridden so users
+	 * can provide their own mapping process.
+	 *
+	 * @param mappingFiles
+	 *            the mapping files
+	 *
+	 * @return the new {@link Mapper} for the mapping process.
+	 */
+	public static Mapper newMapper(final @NonNull List<String> mappingFiles, final @NonNull Class<?> entityClass, final @NonNull Class<?> dtoClass)
+	{
+		final DozerBeanMapper mapper = new DozerBeanMapper(mappingFiles);
+		mapper.addMapping(newBeanMappingBuilder(entityClass, dtoClass));
+		mapper.setCustomFieldMapper((source, destination, sourceFieldValue, classMap,
+									 fieldMapping) -> sourceFieldValue == null);
 		return mapper;
+	}
+
+	public static BeanMappingBuilder newBeanMappingBuilder(final @NonNull Class<?> entityClass, final @NonNull Class<?> dtoClass)
+	{
+		return new BeanMappingBuilder()
+		{
+			@Override
+			protected void configure()
+			{
+				mapping(entityClass, dtoClass, TypeMappingOptions.mapNull(false),
+						TypeMappingOptions.mapEmptyString(false));
+			}
+
+		};
 	}
 }

@@ -24,6 +24,7 @@
  */
 package de.alpharogroup.bean.mapper;
 
+import de.alpharogroup.bean.mapper.factories.MapperFactory;
 import de.alpharogroup.lang.TypeArgumentsExtensions;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -33,8 +34,6 @@ import org.dozer.Mapper;
 
 import java.util.Collections;
 import java.util.List;
-
-import static de.alpharogroup.bean.mapper.factories.MapperFactory.newMapper;
 
 /**
  * The abstract class {@link AbstractGenericMapper} provides an base implementation for mapping
@@ -80,7 +79,7 @@ import static de.alpharogroup.bean.mapper.factories.MapperFactory.newMapper;
 	 */
 	public AbstractGenericMapper(final @NonNull List<String> mappingFiles)
 	{
-		mapper = newMapper(mappingFiles);
+		mapper = MapperFactory.newMapper(mappingFiles);
 	}
 
 }
