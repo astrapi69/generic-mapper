@@ -8,6 +8,11 @@ ADDED:
  
 - migrate from maven to gradle as build system
 
+CHANGED:
+
+- update of gradle to new version 6.5
+- extracted project properties to gradle.properties
+
 Version 2.3
 -------------
 
