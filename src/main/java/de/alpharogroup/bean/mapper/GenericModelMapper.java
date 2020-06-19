@@ -24,25 +24,21 @@
  */
 package de.alpharogroup.bean.mapper;
 
+import lombok.NonNull;
+import org.modelmapper.ModelMapper;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.dozer.Mapper;
-import org.dozer.MappingException;
-
-import lombok.NonNull;
-
 /**
- * The Interface {@link DozerGenericMapper} provides the methods for mapping entities to data
+ * The Interface {@link GenericModelMapper} provides the methods for mapping entities to data
  * transfer objects and back.
  *
- * @param <ENTITY>
- *            the element type of the entity object
- * @param <DTO>
- *            the generic type of the data transfer object
+ * @param <ENTITY> the element type of the entity object
+ * @param <DTO>    the generic type of the data transfer object
  */
-public interface DozerGenericMapper<ENTITY, DTO> extends GenericMapper<ENTITY, DTO>
+public interface GenericModelMapper<ENTITY, DTO> extends GenericMapper<ENTITY, DTO>
 {
 
 	/**
@@ -64,7 +60,7 @@ public interface DozerGenericMapper<ENTITY, DTO> extends GenericMapper<ENTITY, D
 	 *
 	 * @return the mapper
 	 */
-	Mapper getMapper();
+	ModelMapper getMapper();
 
 	/**
 	 * Constructs new instances of destinationClass and performs mapping between from source.
@@ -78,14 +74,12 @@ public interface DozerGenericMapper<ENTITY, DTO> extends GenericMapper<ENTITY, D
 	 * @param destinationClass
 	 *            the destination class
 	 * @return the new instance of destinationClass mapped to source object.
-	 * @throws MappingException
-	 *             is thrown if something goes wrong with the mapping process.
 	 */
 	@Override
 	default <D, S> List<D> map(final @NonNull Collection<S> sources,
-		final @NonNull Class<D> destinationClass) throws MappingException
+		final @NonNull Class<D> destinationClass)
 	{
-		return MapperExtensions.map(getMapper(), sources, destinationClass);
+		return ModelMapperExtensions.map(getMapper(), sources, destinationClass);
 	}
 
 	/**
@@ -100,14 +94,11 @@ public interface DozerGenericMapper<ENTITY, DTO> extends GenericMapper<ENTITY, D
 	 * @param destinationClass
 	 *            the destination class
 	 * @return the new instance of destinationClass mapped to source object.
-	 * @throws MappingException
-	 *             is thrown if something goes wrong with the mapping process.
 	 */
 	@Override
 	default <D, S> D map(final @NonNull S source, final @NonNull Class<D> destinationClass)
-		throws MappingException
 	{
-		return MapperExtensions.map(getMapper(), source, destinationClass);
+		return ModelMapperExtensions.map(getMapper(), source, destinationClass);
 	}
 
 	/**

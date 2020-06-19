@@ -24,36 +24,28 @@
  */
 package de.alpharogroup.bean.mapper;
 
-import java.util.Collections;
-import java.util.List;
-
-import org.dozer.Mapper;
-
+import de.alpharogroup.bean.mapper.factories.ModelMapperFactory;
 import de.alpharogroup.lang.TypeArgumentsExtensions;
 import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
+import org.modelmapper.ModelMapper;
 
 /**
  * The abstract class {@link AbstractGenericMapper} provides an base implementation for mapping
  * entities to data transfer objects and back.
  *
- * @param <E>
- *            the element type
- * @param <DO>
- *            the generic type
+ * @param <E>  the element type
+ * @param <DO> the generic type
  */
-@Getter
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public abstract class AbstractGenericMapper<E, DO> implements DozerGenericMapper<E, DO>
+@Getter @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true) public abstract class AbstractGenericMapper<E, DO>
+	implements GenericModelMapper<E, DO>
 {
 
 	/**
 	 * The data transfer object class.
 	 */
-	@SuppressWarnings("unchecked")
-	Class<DO> dtoClass = (Class<DO>)TypeArgumentsExtensions
+	@SuppressWarnings("unchecked") Class<DO> dtoClass = (Class<DO>)TypeArgumentsExtensions
 		.getTypeArgument(AbstractGenericMapper.class, this.getClass(), 1);
 
 	/**
@@ -66,25 +58,19 @@ public abstract class AbstractGenericMapper<E, DO> implements DozerGenericMapper
 	/**
 	 * The mapper instance.
 	 */
-	Mapper mapper;
+	ModelMapper mapper;
 
 	/**
 	 * Instantiates a new {@link AbstractGenericMapper} object
 	 */
 	public AbstractGenericMapper()
 	{
-		this(Collections.emptyList());
+		mapper = newModelMapper();
 	}
 
-	/**
-	 * Instantiates a new {@link AbstractGenericMapper} object
-	 *
-	 * @param mappingFiles
-	 *            the mapping files
-	 */
-	public AbstractGenericMapper(final @NonNull List<String> mappingFiles)
+	protected ModelMapper newModelMapper()
 	{
-		mapper = DozerBeanMapperSingleton.getInstance(getEntityClass(), getDtoClass());
+		return ModelMapperFactory.newModelMapper();
 	}
 
 }

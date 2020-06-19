@@ -34,10 +34,9 @@ repositories {
 dependencies {
     compileOnly("org.projectlombok:lombok:$lombokVersion")
     annotationProcessor("org.projectlombok:lombok:$lombokVersion")
-    implementation("net.sf.dozer:dozer:$dozerVersion")
-    implementation("de.alpharogroup:jobj-core:$jobjCoreVersion")
     implementation("de.alpharogroup:bean-mapper-api:$beanMapperApiVersion")
-    implementation("org.projectlombok:lombok:$lombokVersion")
+    implementation("org.modelmapper:modelmapper:$modelmapperVersion")
+    implementation("de.alpharogroup:jobj-core:$jobjCoreVersion")
     testImplementation("de.alpharogroup:test-objects:$testObjectsVersion")
     testImplementation("org.testng:testng:$testngVersion")
 }

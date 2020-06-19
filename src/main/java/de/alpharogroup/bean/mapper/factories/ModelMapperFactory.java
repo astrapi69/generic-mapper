@@ -22,34 +22,23 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.bean.mapper;
+package de.alpharogroup.bean.mapper.factories;
 
-import static org.testng.Assert.assertEquals;
+import org.modelmapper.ModelMapper;
 
-import org.testng.annotations.Test;
-
-import de.alpharogroup.bean.mapper.factories.MapperFactory;
-import de.alpharogroup.test.objects.Member;
-import de.alpharogroup.test.objects.Person;
-import de.alpharogroup.test.objects.enums.Gender;
-
-public class MapperExtensionsTest
+public class ModelMapperFactory
 {
 
-	@Test
-	public void testMap()
+	/**
+	 * Factory method for creating the new {@link ModelMapper} for the mapping process. This method is
+	 * invoked in the constructor and can be overridden so users can provide their own mapping
+	 * process
+	 *
+	 * @return the new {@link ModelMapper} for the mapping process
+	 */
+	public static ModelMapper newModelMapper()
 	{
+		return new ModelMapper();
 	}
 
-	@Test
-	public void testTestMap()
-	{
-		Member actual;
-		Member expected;
-		Person asterix = Person.builder().name("asterix").build();
-		actual = MapperExtensions.map(MapperFactory.newMapper(), asterix, Member.class);
-		expected = Member.buildMember().about("").name("asterix").gender(Gender.UNDEFINED)
-			.married(false).nickname("").build();
-		assertEquals(actual, expected);
-	}
 }

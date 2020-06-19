@@ -24,43 +24,30 @@
  */
 package de.alpharogroup.bean.mapper;
 
-import java.util.ArrayList;
-import java.util.List;
+import de.alpharogroup.bean.mapper.factories.ModelMapperFactory;
+import de.alpharogroup.test.objects.Member;
+import de.alpharogroup.test.objects.Person;
+import de.alpharogroup.test.objects.enums.Gender;
+import org.testng.annotations.Test;
 
-import org.dozer.DozerBeanMapper;
+import static org.testng.Assert.assertEquals;
 
-import de.alpharogroup.bean.mapper.factories.MapperFactory;
-import lombok.NonNull;
-
-/**
- * The class {@link DozerBeanMapperSingleton} holds a single instance of the class
- * {@linkplain DozerBeanMapper}.
- */
-public final class DozerBeanMapperSingleton
+public class ModelMapperExtensionsTest
 {
 
-	/**
-	 * The only single one instance.
-	 */
-	private static DozerBeanMapper instance;
-
-	public static synchronized DozerBeanMapper getInstance(final @NonNull Class<?> entityClass,
-		final @NonNull Class<?> dtoClass)
+	@Test public void testMap()
 	{
-		if (instance == null)
-		{
-			List<String> mappingFiles = new ArrayList<>();
-			mappingFiles.add("uuid-mapping.xml");
-			instance = (DozerBeanMapper)MapperFactory.newMapper(mappingFiles, entityClass,
-				dtoClass);
-		}
-		return instance;
 	}
 
-	/**
-	 * Instantiates a new {@link DozerBeanMapperSingleton}.
-	 */
-	private DozerBeanMapperSingleton()
+	@Test public void testTestMap()
 	{
+		Member actual;
+		Member expected;
+		Person asterix = Person.builder().name("asterix").build();
+		actual = ModelMapperExtensions
+			.map(ModelMapperFactory.newModelMapper(), asterix, Member.class);
+		expected = Member.buildMember().about("").name("asterix").gender(Gender.UNDEFINED)
+			.married(false).nickname("").build();
+		assertEquals(actual, expected);
 	}
 }
