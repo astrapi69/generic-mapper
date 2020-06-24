@@ -30,6 +30,8 @@ import de.alpharogroup.test.objects.Person;
 import de.alpharogroup.test.objects.enums.Gender;
 import org.testng.annotations.Test;
 
+import java.time.LocalDateTime;
+
 import static org.testng.Assert.assertEquals;
 
 public class ModelMapperExtensionsTest
@@ -48,6 +50,20 @@ public class ModelMapperExtensionsTest
 			.map(ModelMapperFactory.newModelMapper(), asterix, Member.class);
 		expected = Member.buildMember().about("").name("asterix").gender(Gender.UNDEFINED)
 			.married(false).nickname("").build();
+		assertEquals(actual, expected);
+	}
+
+	@Test public void testTestLocal()
+	{
+		LocalDateTime actual;
+		LocalDateTime expected;
+
+		LocalDateTime now = LocalDateTime.now();
+		DrawnNumbers drawnNumbers = DrawnNumbers.builder().drawnDate(now).build();
+		Drawing mapped = ModelMapperExtensions
+			.map(ModelMapperFactory.newModelMapper(), drawnNumbers, Drawing.class);
+		expected = now;
+		actual = mapped.getDrawnDate();
 		assertEquals(actual, expected);
 	}
 }
