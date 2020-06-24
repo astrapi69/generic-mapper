@@ -31,6 +31,7 @@ import de.alpharogroup.test.objects.enums.Gender;
 import org.testng.annotations.Test;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import static org.testng.Assert.assertEquals;
 
@@ -59,11 +60,13 @@ public class ModelMapperExtensionsTest
 		LocalDateTime expected;
 
 		LocalDateTime now = LocalDateTime.now();
-		DrawnNumbers drawnNumbers = DrawnNumbers.builder().drawnDate(now).build();
+		DrawnNumbers drawnNumbers = DrawnNumbers.builder().id(UUID.randomUUID()).drawnDate(now)
+			.build();
 		Drawing mapped = ModelMapperExtensions
 			.map(ModelMapperFactory.newModelMapper(), drawnNumbers, Drawing.class);
 		expected = now;
 		actual = mapped.getDrawnDate();
 		assertEquals(actual, expected);
+		assertEquals(mapped.getId(), drawnNumbers.getId());
 	}
 }
