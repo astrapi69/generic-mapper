@@ -22,45 +22,23 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.bean.mapper;
+package de.alpharogroup.bean.mapper.factories;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.modelmapper.ModelMapper;
 
-import org.dozer.DozerBeanMapper;
-
-import de.alpharogroup.bean.mapper.factories.MapperFactory;
-import lombok.NonNull;
-
-/**
- * The class {@link DozerBeanMapperSingleton} holds a single instance of the class
- * {@linkplain DozerBeanMapper}.
- */
-public final class DozerBeanMapperSingleton
+public class ModelMapperFactory
 {
 
 	/**
-	 * The only single one instance.
+	 * Factory method for creating the new {@link ModelMapper} for the mapping process. This method is
+	 * invoked in the constructor and can be overridden so users can provide their own mapping
+	 * process
+	 *
+	 * @return the new {@link ModelMapper} for the mapping process
 	 */
-	private static DozerBeanMapper instance;
-
-	public static synchronized DozerBeanMapper getInstance(final @NonNull Class<?> entityClass,
-		final @NonNull Class<?> dtoClass)
+	public static ModelMapper newModelMapper()
 	{
-		if (instance == null)
-		{
-			List<String> mappingFiles = new ArrayList<>();
-			mappingFiles.add("uuid-mapping.xml");
-			instance = (DozerBeanMapper)MapperFactory.newMapper(mappingFiles, entityClass,
-				dtoClass);
-		}
-		return instance;
+		return new ModelMapper();
 	}
 
-	/**
-	 * Instantiates a new {@link DozerBeanMapperSingleton}.
-	 */
-	private DozerBeanMapperSingleton()
-	{
-	}
 }

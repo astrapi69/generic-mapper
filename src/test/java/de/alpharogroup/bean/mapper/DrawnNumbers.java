@@ -1,8 +1,8 @@
 /**
  * The MIT License
- *
+ * <p>
  * Copyright (C) 2015 Asterios Raptis
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
  * "Software"), to deal in the Software without restriction, including
@@ -10,10 +10,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -22,25 +22,19 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.bean.mapper.factories;
+package de.alpharogroup.bean.mapper;
 
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
+import java.time.LocalDateTime;
 import java.util.UUID;
 
-import org.dozer.BeanFactory;
-
-public class UuidBeanFactory implements BeanFactory
+@Getter @Setter @EqualsAndHashCode @ToString @NoArgsConstructor @AllArgsConstructor @Builder(toBuilder = true) @FieldDefaults(level = AccessLevel.PRIVATE) public class DrawnNumbers
 {
 
-	@Override
-	public Object createBean(Object sourceBean, Class<?> destinationType, String mapId)
-	{
-		if (sourceBean == null)
-		{
-			return null;
-		}
-		UUID source = (UUID)sourceBean;
-		UUID destination = new UUID(source.getMostSignificantBits(),
-			source.getLeastSignificantBits());
-		return destination;
-	}
+	UUID id;
+
+	LocalDateTime drawnDate;
+
 }

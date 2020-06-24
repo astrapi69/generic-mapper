@@ -24,32 +24,49 @@
  */
 package de.alpharogroup.bean.mapper;
 
-import static org.testng.Assert.assertEquals;
-
-import org.testng.annotations.Test;
-
-import de.alpharogroup.bean.mapper.factories.MapperFactory;
+import de.alpharogroup.bean.mapper.factories.ModelMapperFactory;
 import de.alpharogroup.test.objects.Member;
 import de.alpharogroup.test.objects.Person;
 import de.alpharogroup.test.objects.enums.Gender;
+import org.testng.annotations.Test;
 
-public class MapperExtensionsTest
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+import static org.testng.Assert.assertEquals;
+
+public class ModelMapperExtensionsTest
 {
 
-	@Test
-	public void testMap()
+	@Test public void testMap()
 	{
 	}
 
-	@Test
-	public void testTestMap()
+	@Test public void testTestMap()
 	{
 		Member actual;
 		Member expected;
 		Person asterix = Person.builder().name("asterix").build();
-		actual = MapperExtensions.map(MapperFactory.newMapper(), asterix, Member.class);
+		actual = ModelMapperExtensions
+			.map(ModelMapperFactory.newModelMapper(), asterix, Member.class);
 		expected = Member.buildMember().about("").name("asterix").gender(Gender.UNDEFINED)
 			.married(false).nickname("").build();
 		assertEquals(actual, expected);
+	}
+
+	@Test public void testTestLocal()
+	{
+		LocalDateTime actual;
+		LocalDateTime expected;
+
+		LocalDateTime now = LocalDateTime.now();
+		DrawnNumbers drawnNumbers = DrawnNumbers.builder().id(UUID.randomUUID()).drawnDate(now)
+			.build();
+		Drawing mapped = ModelMapperExtensions
+			.map(ModelMapperFactory.newModelMapper(), drawnNumbers, Drawing.class);
+		expected = now;
+		actual = mapped.getDrawnDate();
+		assertEquals(actual, expected);
+		assertEquals(mapped.getId(), drawnNumbers.getId());
 	}
 }

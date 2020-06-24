@@ -1,6 +1,19 @@
 ## Change log
 ----------------------
 
+Version 2.4
+-------------
+
+ADDED:
+ 
+- migrate from maven to gradle as build system
+- changed from old dozer to new model-mapper dependency
+
+CHANGED:
+
+- update of gradle to new version 6.5
+- extracted project properties to gradle.properties
+
 Version 2.3
 -------------
 
