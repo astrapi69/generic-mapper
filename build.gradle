@@ -43,7 +43,8 @@ dependencies {
     implementation("org.modelmapper:modelmapper:$modelmapperVersion")
     implementation("de.alpharogroup:jobj-core:$jobjCoreVersion")
     testImplementation("de.alpharogroup:test-objects:$testObjectsVersion")
-    testImplementation("org.testng:testng:$testngVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
 }
 
 task sourcesJar(type: Jar) {

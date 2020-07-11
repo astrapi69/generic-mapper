@@ -28,12 +28,12 @@ import de.alpharogroup.bean.mapper.factories.ModelMapperFactory;
 import de.alpharogroup.test.objects.Member;
 import de.alpharogroup.test.objects.Person;
 import de.alpharogroup.test.objects.enums.Gender;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ModelMapperExtensionsTest
 {

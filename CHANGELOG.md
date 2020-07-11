@@ -4,6 +4,15 @@
 Version 2.5-SNAPSHOT
 -------------
 
+ADDED:
+ 
+- added new test-dependency junit-jupiter (junit 5) in version 5.6.2
+
+CHANGED:
+
+- update gradle to new version 6.5.1
+- remove of test-dependency testng 
+
 Version 2.4
 -------------
 
