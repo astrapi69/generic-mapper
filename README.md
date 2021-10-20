@@ -11,29 +11,14 @@
 
 </div>
 
-Utility library for map classes with dozer in a generic way
+Utility library for map classes with model-mapper in a generic way
 
-If you like this project put a ⭐ and donate.
-
-# Donations
-
-If you like this library, please consider a donation through paypal: <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MJ7V43GU2H386" target="_blank">
-<img src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif" alt="PayPal this" title="PayPal – The safer, easier way to pay online!" border="0" />
-</a>
-
-or over bitcoin or bitcoin-cash with:
-
-36JxRRDfRazLNqUV6NsywCw1q7TK38ukpC
-
-or over ether with:
-
-0x588Aa02De98B1Ef70afeDC3ec5290130a3E5e273
-
-or over flattr:
-  
-<a href="http://flattr.com/thing/4067696/astrapi69generic-mapper-on-GitHub" target="_blank">
-<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" />
-</a>
+> Please support this project by simply putting a Github <!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/astrapi69/generic-mapper" data-icon="octicon-star" aria-label="Star astrapi69/generic-mapper on GitHub">Star ⭐</a>
+>
+> Share this library with friends on Twitter and everywhere else you can
+>
+> If you love this project [![donation](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
 
 ## Note
 
@@ -55,7 +40,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- GENERIC-MAPPER version -->
-		<generic-mapper.version>2.4</generic-mapper.version>
+		<generic-mapper.version>2.5</generic-mapper.version>
 			...
 	</properties>
 			...
@@ -73,20 +58,94 @@ Than you can add the dependency to your dependencies:
 	
 ## gradle dependency
 
-Add the following gradle dependency to your project `build.gradle` in the dependencies section if you want to import the core functionality of generic-mapper:
+Add the following gradle dependency to your project `build.gradle` in the dependencies section if 
+you want to import the core functionality of generic-mapper:
+
+define version in file gradle.properties
+
+```
+genericMapperVersion=2.5
+```
+
+or in build.gradle ext area
 
 ```
 ext {
 			...
-    genericMapperVersion = '2.4'
-			...
-}
-dependencies {
-			...
-	compile 'io.github.astrapi69:generic-mapper:${genericMapperVersion}'
+    genericMapperVersion = '2.5'
 			...
 }
 ```
+
+and then add the dependency to the dependencies area
+
+```
+dependencies {
+			...
+	implementation("io.github.astrapi69:generic-mapper:$genericMapperVersion")
+			...
+}
+```
+
+# Donations
+
+This project is kept as an open source product and relies on contributions to remain being
+developed. If you like this library, please consider a donation
+
+over paypal: <br><br>
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MJ7V43GU2H386" target="_blank">
+<img src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif" alt="PayPal this" title="PayPal – The safer, easier way to pay online!" style="border: none" />
+</a>
+<br><br>
+or over bitcoin(BTC) with this address:
+
+bc1ql2y99q7e8psndhcc3gferk03esw3qqf677rhjy
+
+<img
+src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/bc1ql2y99q7e8psndhcc3gferk03esw3qqf677rhjy.png"
+alt="Donation Bitcoin Wallet" width="250"/>
+
+or over FIO with this address:
+
+FIO7tFMUVAA9cHiPPqKMfMXiSxHrbpiFyRYqTketNuM67aULuwjop
+
+<img
+src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/FIO7tFMUVAA9cHiPPqKMfMXiSxHrbpiFyRYqTketNuM67aULuwjop.png"
+alt="Donation FIO Wallet" width="250"/>
+
+or over Ethereum(ETH) with:
+
+0xc057D159D3C8f3311E73568b334FF6fE82EB2b7D
+
+<img
+src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/0xc057D159D3C8f3311E73568b334FF6fE82EB2b7D.png"
+alt="Donation Ethereum Wallet" width="250"/>
+
+or over Ethereum Classic(ETC) with:
+
+0xF708cA86D86C246B69c3F4BAe431eBbe0c2bfddD
+
+<img
+src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/0xF708cA86D86C246B69c3F4BAe431eBbe0c2bfddD.png"
+alt="Donation Ethereum Classic Wallet" width="250"/>
+
+or over Dogecoin(DOGE) with:
+
+D5yi4Um8cpakd6yPRm2hGWuQ5nrVzhSSW1
+
+<img
+src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/D5yi4Um8cpakd6yPRm2hGWuQ5nrVzhSSW1.png"
+alt="Donation Dogecoin Wallet" width="250"/>
+
+or over Monero(XMR) with:
+
+49bqeRQ7Bf49oJFVC72pqpe5hFbb62pfXDYPdLsadGGF81KZW2ZfrPZ8PbAVu5X2v1TYAspeczMya3cYQysNS4usRRPQHVw
+
+<img
+src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/49bqeRQ7Bf49oJFVC72pqpe5hFbb62pfXDYPdLsadGGF81KZW2ZfrPZ8PbAVu5X2v1TYAspeczMya3cYQysNS4usRRPQHVw.png"
+alt="Donation Monero Wallet" width="250"/>
+
+or over the donation buttons at the top.
 
 ## Semantic Versioning
 
