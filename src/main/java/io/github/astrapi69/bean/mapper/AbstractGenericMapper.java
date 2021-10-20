@@ -22,30 +22,36 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.bean.mapper;
+package io.github.astrapi69.bean.mapper;
 
-import de.alpharogroup.bean.mapper.factories.ModelMapperFactory;
-import de.alpharogroup.lang.TypeArgumentsExtensions;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
+
 import org.modelmapper.ModelMapper;
+
+import io.github.astrapi69.bean.mapper.factories.ModelMapperFactory;
+import io.github.astrapi69.lang.TypeArgumentsExtensions;
 
 /**
  * The abstract class {@link AbstractGenericMapper} provides an base implementation for mapping
  * entities to data transfer objects and back.
  *
- * @param <E>  the element type
- * @param <DO> the generic type
+ * @param <E>
+ *            the element type
+ * @param <DO>
+ *            the generic type
  */
-@Getter @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true) public abstract class AbstractGenericMapper<E, DO>
-	implements GenericModelMapper<E, DO>
+@Getter
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+public abstract class AbstractGenericMapper<E, DO> implements GenericModelMapper<E, DO>
 {
 
 	/**
 	 * The data transfer object class.
 	 */
-	@SuppressWarnings("unchecked") Class<DO> dtoClass = (Class<DO>)TypeArgumentsExtensions
+	@SuppressWarnings("unchecked")
+	Class<DO> dtoClass = (Class<DO>)TypeArgumentsExtensions
 		.getTypeArgument(AbstractGenericMapper.class, this.getClass(), 1);
 
 	/**

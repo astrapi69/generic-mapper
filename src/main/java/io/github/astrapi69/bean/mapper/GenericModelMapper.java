@@ -22,21 +22,24 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.bean.mapper;
-
-import lombok.NonNull;
-import org.modelmapper.ModelMapper;
+package io.github.astrapi69.bean.mapper;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import lombok.NonNull;
+
+import org.modelmapper.ModelMapper;
+
 /**
  * The Interface {@link GenericModelMapper} provides the methods for mapping entities to data
  * transfer objects and back.
  *
- * @param <ENTITY> the element type of the entity object
- * @param <DTO>    the generic type of the data transfer object
+ * @param <ENTITY>
+ *            the element type of the entity object
+ * @param <DTO>
+ *            the generic type of the data transfer object
  */
 public interface GenericModelMapper<ENTITY, DTO> extends GenericMapper<ENTITY, DTO>
 {

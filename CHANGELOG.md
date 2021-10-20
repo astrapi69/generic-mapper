@@ -1,6 +1,19 @@
 ## Change log
 ----------------------
 
+Version 2.5
+-------------
+
+ADDED:
+ 
+- added new test-dependency junit-jupiter (junit 5) in version 5.8.1
+
+CHANGED:
+
+- update gradle to new version 7.2
+- changed to new package io.github.astrapi69
+- remove of test-dependency testng 
+
 Version 2.4
 -------------
 

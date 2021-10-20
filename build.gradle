@@ -1,29 +1,25 @@
 
 buildscript {
-    ext {
-        gradlePluginLombokVersion = "4.0.0"
-        gradlePluginVersionsVersion = "0.28.0"
-        licenseGradlePluginVersion = "0.15.0"
-    }
     repositories {
         maven {
             url "https://plugins.gradle.org/m2/"
         }
     }
     dependencies {
-        classpath "io.franzbecker:gradle-lombok:$gradlePluginLombokVersion"
+        classpath "io.freefair.gradle:lombok-plugin:$gradlePluginLombokVersion"
         classpath "com.github.ben-manes:gradle-versions-plugin:$gradlePluginVersionsVersion"
         classpath "gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin:$licenseGradlePluginVersion"
     }
 }
 
-apply plugin: "io.franzbecker.gradle-lombok"
+apply plugin: "io.freefair.lombok"
 apply plugin: "java"
+apply plugin: "java-library"
 apply plugin: "maven-publish"
-apply plugin: "jacoco"
 apply plugin: "signing"
 apply plugin: "com.github.ben-manes.versions"
 apply plugin: "com.github.hierynomus.license"
+apply plugin: "jacoco"
 
 group = "$groupPackage"
 version = "$projectVersion"
@@ -31,19 +27,23 @@ description = "$rootProject.name"
 sourceCompatibility = "$projectSourceCompatibility"
 
 repositories {
-    jcenter()
     mavenLocal()
     mavenCentral()
 }
 
-dependencies {
-    compileOnly("org.projectlombok:lombok:$lombokVersion")
-    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
-    implementation("de.alpharogroup:bean-mapper-api:$beanMapperApiVersion")
-    implementation("org.modelmapper:modelmapper:$modelmapperVersion")
-    implementation("de.alpharogroup:jobj-core:$jobjCoreVersion")
-    testImplementation("de.alpharogroup:test-objects:$testObjectsVersion")
-    testImplementation("org.testng:testng:$testngVersion")
+javadoc {
+    failOnError = false
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption("html5", true)
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+test {
+    useJUnitPlatform()
 }
 
 task sourcesJar(type: Jar) {
@@ -57,6 +57,15 @@ task javadocJar(type: Jar) {
     javadoc.properties.failOnError = true
 }
 
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+
+check.dependsOn jacocoTestReport
+
 def releaseVersion = !version.endsWith("SNAPSHOT")
 
 publishing {
@@ -69,14 +78,14 @@ publishing {
             pom {
                 name = "$rootProject.name"
                 description = "$projectDescription"
-                url = "$projectScmProviderUrl"+"$projectHolderUsername"+"/"+"$rootProject.name"
+                url = "$projectScmProviderUrl"+"$projectHolderUsername"+"$slash"+"$rootProject.name"
                 organization {
                     name = "$projectOrganizationName"
                     url = "$projectOrganizationUrl"
                 }
                 issueManagement {
                     system = "$projectIssueManagementSystem"
-                    url = "$projectScmProviderUrl"+"$projectHolderUsername"+"/"+"$rootProject.name"+"/issues"
+                    url = "$projectScmProviderUrl"+"$projectHolderUsername"+"$slash"+"$rootProject.name"+"$issuesPath"
                 }
                 licenses {
                     license {
@@ -92,9 +101,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection = "$projectScmGitUrlPrefix" + "$projectScmProviderDomain" + ":" + "$projectHolderUsername" + "/" + "$rootProject.name" + ".git"
-                    developerConnection = "$projectScmGitUrlPrefix" + "$projectScmProviderDomain" + ":" + "$projectHolderUsername" + "/" + "$rootProject.name" + ".git"
-                    url = "$projectScmGitUrlPrefix" + "$projectScmProviderDomain" + ":" + "$projectHolderUsername" + "/" + "$rootProject.name" + ".git"
+                    connection = "$projectScmGitUrlPrefix" + "$projectScmProviderDomain" + "$colon" + "$projectHolderUsername" + "$slash" + "$rootProject.name" + "$projectScmGitUrlSuffix"
+                    developerConnection = "$projectScmGitUrlPrefix" + "$projectScmProviderDomain" + "$colon" + "$projectHolderUsername" + "$slash" + "$rootProject.name" + "$projectScmGitUrlSuffix"
+                    url = "$projectScmGitUrlPrefix" + "$projectScmProviderDomain" + "$colon" + "$projectHolderUsername" + "$slash" + "$rootProject.name" + "$projectScmGitUrlSuffix"
                 }
             }
         }
@@ -112,25 +121,26 @@ publishing {
     }
 }
 
-tasks.withType(GenerateModuleMetadata) {
-    enabled = false
-}
-
 signing {
     if (releaseVersion) {
         sign publishing.publications.mavenJava
     }
 }
 
-javadoc {
-    failOnError = false
-    if(JavaVersion.current().isJava9Compatible()) {
-        options.addBooleanOption("html5", true)
+jar {
+    manifest {
+        attributes(
+                "Name"                  : project.name,
+                "Manifest-Version"      : project.version,
+                "Implementation-Title"  : "$groupPackage" + "." + "$rootProject.name",
+                "Implementation-Version": project.version,
+                "Implementation-Vendor" : "$projectLeaderName",
+                "Created-By"            : "Gradle ${gradle.gradleVersion}",
+                "Built-By"              : "$projectLeaderName",
+                "Build-Timestamp"       : new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(new Date()),
+                "Build-Jdk"             : "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})",
+                "Build-OS"              : "${System.properties['os.name']} ${System.properties['os.arch']} ${System.properties['os.version']}")
     }
-}
-
-tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
 }
 
 license {
@@ -166,20 +176,17 @@ license {
               "out/**",
               "build/**"])
 }
-
 // workhack for license issue #76
 gradle.startParameter.excludedTaskNames += "licenseMain"
 gradle.startParameter.excludedTaskNames += "licenseTest"
 
-test {
-    useTestNG()
+dependencies {
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+    implementation("io.github.astrapi69:bean-mapper-api:$beanMapperApiVersion")
+    implementation("org.modelmapper:modelmapper:$modelmapperVersion")
+    implementation("io.github.astrapi69:jobj-core:$jobjCoreVersion")
+    testImplementation("io.github.astrapi69:test-objects:$testObjectsVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
 }
-
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        html.enabled false
-    }
-}
-
-check.dependsOn jacocoTestReport

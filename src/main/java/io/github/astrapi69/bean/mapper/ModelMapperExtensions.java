@@ -22,13 +22,13 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.bean.mapper;
-
-import org.modelmapper.ModelMapper;
+package io.github.astrapi69.bean.mapper;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import org.modelmapper.ModelMapper;
 
 /**
  * The class {@link ModelMapperExtensions}.
@@ -39,11 +39,16 @@ public final class ModelMapperExtensions
 	/**
 	 * Constructs new instances of destinationClass and performs mapping between from source.
 	 *
-	 * @param <T>              the generic type of the destinationClass
-	 * @param <S>              the generic type of the source
-	 * @param mapper           the dozer mapper object
-	 * @param sources          the collection of source objects
-	 * @param destinationClass the destination class
+	 * @param <T>
+	 *            the generic type of the destinationClass
+	 * @param <S>
+	 *            the generic type of the source
+	 * @param mapper
+	 *            the dozer mapper object
+	 * @param sources
+	 *            the collection of source objects
+	 * @param destinationClass
+	 *            the destination class
 	 * @return the new instance of destinationClass mapped to source object.
 	 */
 	public static <T, S> List<T> map(final ModelMapper mapper, final Collection<S> sources,

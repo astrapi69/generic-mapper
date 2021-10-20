@@ -22,23 +22,34 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.bean.mapper.factories;
+package io.github.astrapi69.bean.mapper;
 
-import org.modelmapper.ModelMapper;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
-public class ModelMapperFactory
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
+
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(toBuilder = true)
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class DrawnNumbers
 {
 
-	/**
-	 * Factory method for creating the new {@link ModelMapper} for the mapping process. This method is
-	 * invoked in the constructor and can be overridden so users can provide their own mapping
-	 * process
-	 *
-	 * @return the new {@link ModelMapper} for the mapping process
-	 */
-	public static ModelMapper newModelMapper()
-	{
-		return new ModelMapper();
-	}
+	UUID id;
+
+	LocalDateTime drawnDate;
 
 }
