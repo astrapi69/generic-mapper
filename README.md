@@ -5,8 +5,8 @@
 [![Build Status](https://travis-ci.org/astrapi69/generic-mapper.svg?branch=develop)](https://travis-ci.org/astrapi69/generic-mapper) 
 [![Coverage Status](https://coveralls.io/repos/github/astrapi69/generic-mapper/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/generic-mapper?branch=develop) 
 [![Open Issues](https://img.shields.io/github/issues/astrapi69/generic-mapper.svg?style=flat)](https://github.com/astrapi69/generic-mapper/issues) 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/generic-mapper/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/generic-mapper)
-[![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/generic-mapper.svg)](http://www.javadoc.io/doc/de.alpharogroup/generic-mapper)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/generic-mapper/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/generic-mapper)
+[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/generic-mapper.svg)](http://www.javadoc.io/doc/io.github.astrapi69/generic-mapper)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 
 </div>
@@ -46,7 +46,7 @@ The source code comes under the liberal MIT License
 ## Maven dependency
 
 Maven dependency is now on sonatype.
-Check out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~de.alpharogroup~generic-mapper~~~) for latest snapshots and releases.
+Check out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~generic-mapper~~~) for latest snapshots and releases.
 
 Add the following maven dependency to your project `pom.xml` if you want to import the core functionality of generic-mapper:
 
@@ -63,7 +63,7 @@ Than you can add the dependency to your dependencies:
 			...
 			<!-- GENERIC-MAPPER DEPENDENCY -->
 			<dependency>
-				<groupId>de.alpharogroup</groupId>
+				<groupId>io.github.astrapi69</groupId>
 				<artifactId>generic-mapper</artifactId>
 				<version>${generic-mapper.version}</version>
 			</dependency>
@@ -83,7 +83,7 @@ ext {
 }
 dependencies {
 			...
-	compile 'de.alpharogroup:generic-mapper:${genericMapperVersion}'
+	compile 'io.github.astrapi69:generic-mapper:${genericMapperVersion}'
 			...
 }
 ```
@@ -123,7 +123,7 @@ Do not hesitate to contact the generic-mapper developers with your questions, co
 
 |**Nexus Sonatype repositories**|
 |     :---:      |
-|[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/de.alpharogroup/generic-mapper.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~de.alpharogroup~generic-mapper~~~)|
+|[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/io.github.astrapi69/generic-mapper.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~generic-mapper~~~)|
 |Special thanks to [sonatype repository](https://www.sonatype.com) for providing a free maven repository service for open source projects|
 |     <img width=1000/>     |
 
@@ -135,7 +135,7 @@ Do not hesitate to contact the generic-mapper developers with your questions, co
 
 |**javadoc.io**|
 |     :---:      |
-|[![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/generic-mapper.svg)](http://www.javadoc.io/doc/de.alpharogroup/generic-mapper)|
+|[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/generic-mapper.svg)](http://www.javadoc.io/doc/io.github.astrapi69/generic-mapper)|
 |Special thanks to [javadoc.io](http://www.javadoc.io) for providing a free javadoc documentation for open source projects|
 |     <img width=1000/>     |
 

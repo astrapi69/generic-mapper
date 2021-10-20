@@ -22,39 +22,43 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.bean.mapper;
+package io.github.astrapi69.bean.mapper;
 
-import de.alpharogroup.bean.mapper.factories.ModelMapperFactory;
-import de.alpharogroup.test.objects.Member;
-import de.alpharogroup.test.objects.Person;
-import de.alpharogroup.test.objects.enums.Gender;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import io.github.astrapi69.bean.mapper.factories.ModelMapperFactory;
+import io.github.astrapi69.test.objects.Member;
+import io.github.astrapi69.test.objects.Person;
+import io.github.astrapi69.test.objects.enums.Gender;
 
 public class ModelMapperExtensionsTest
 {
 
-	@Test public void testMap()
+	@Test
+	public void testMap()
 	{
 	}
 
-	@Test public void testTestMap()
+	@Test
+	public void testTestMap()
 	{
 		Member actual;
 		Member expected;
 		Person asterix = Person.builder().name("asterix").build();
-		actual = ModelMapperExtensions
-			.map(ModelMapperFactory.newModelMapper(), asterix, Member.class);
+		actual = ModelMapperExtensions.map(ModelMapperFactory.newModelMapper(), asterix,
+			Member.class);
 		expected = Member.buildMember().about("").name("asterix").gender(Gender.UNDEFINED)
 			.married(false).nickname("").build();
 		assertEquals(actual, expected);
 	}
 
-	@Test public void testTestLocal()
+	@Test
+	public void testTestLocal()
 	{
 		LocalDateTime actual;
 		LocalDateTime expected;
@@ -62,8 +66,8 @@ public class ModelMapperExtensionsTest
 		LocalDateTime now = LocalDateTime.now();
 		DrawnNumbers drawnNumbers = DrawnNumbers.builder().id(UUID.randomUUID()).drawnDate(now)
 			.build();
-		Drawing mapped = ModelMapperExtensions
-			.map(ModelMapperFactory.newModelMapper(), drawnNumbers, Drawing.class);
+		Drawing mapped = ModelMapperExtensions.map(ModelMapperFactory.newModelMapper(),
+			drawnNumbers, Drawing.class);
 		expected = now;
 		actual = mapped.getDrawnDate();
 		assertEquals(actual, expected);
