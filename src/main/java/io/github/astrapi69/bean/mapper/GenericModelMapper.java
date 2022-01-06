@@ -134,6 +134,20 @@ public interface GenericModelMapper<ENTITY, DTO> extends GenericMapper<ENTITY, D
 	 * {@inheritDoc}
 	 */
 	@Override
+	default List<DTO> toDtos(final @NonNull Iterable<ENTITY> entities)
+	{
+		final List<DTO> domainObjects = new ArrayList<>();
+		for (final ENTITY entity : entities)
+		{
+			domainObjects.add(toDto(entity));
+		}
+		return domainObjects;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	default List<ENTITY> toEntities(final @NonNull Collection<DTO> dtos)
 	{
 		final List<ENTITY> entities = new ArrayList<>();
@@ -143,6 +157,20 @@ public interface GenericModelMapper<ENTITY, DTO> extends GenericMapper<ENTITY, D
 			{
 				entities.add(toEntity(dto));
 			}
+		}
+		return entities;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	default List<ENTITY> toEntities(final @NonNull Iterable<DTO> dtos)
+	{
+		final List<ENTITY> entities = new ArrayList<>();
+		for (final DTO dto : dtos)
+		{
+			entities.add(toEntity(dto));
 		}
 		return entities;
 	}

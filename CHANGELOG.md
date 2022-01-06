@@ -4,14 +4,25 @@
 Version 2.6-SNAPSHOT
 -------------
 
+ADDED:
 
+- new map methods for iterable objects
+
+CHANGED:
+
+- update gradle to new version 7.3.3
+- update of gradle-plugin com.github.ben-manes.versions to version 0.41.0
+- update of dependency bean-mapper-api version to 1.2
+- update of dependency jobj-core version to 5.2
+- update of dependency modelmapper to version 3.0.0
+- update of test-dependency junit-jupiter to version 5.8.2
 
 Version 2.5
 -------------
 
 ADDED:
  
-- added new test-dependency junit-jupiter (junit 5) in version 5.8.1
+- new test-dependency junit-jupiter (junit 5) in version 5.8.1
 
 CHANGED:
 
