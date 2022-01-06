@@ -1,6 +1,6 @@
 # Overview
 
-<div align="center">
+<div style="text-align: center">
 
 [![Build Status](https://travis-ci.org/astrapi69/generic-mapper.svg?branch=develop)](https://travis-ci.org/astrapi69/generic-mapper) 
 [![Coverage Status](https://coveralls.io/repos/github/astrapi69/generic-mapper/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/generic-mapper?branch=develop) 
@@ -28,6 +28,29 @@ No animals were harmed in the making of this library.
 
 The source code comes under the liberal MIT License
 
+## gradle dependency
+
+Add the following gradle dependency to your project `build.gradle` in the dependencies section if
+you want to import the core functionality of generic-mapper:
+
+define version in file gradle.properties
+
+```
+genericMapperVersion=2.6
+```
+
+or in build.gradle ext area
+
+```
+    genericMapperVersion = '2.6'
+```
+
+and then add the dependency to the dependencies area
+
+```
+	implementation("io.github.astrapi69:generic-mapper:$genericMapperVersion")
+```
+
 ## Maven dependency
 
 Maven dependency is now on sonatype.
@@ -40,7 +63,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- GENERIC-MAPPER version -->
-		<generic-mapper.version>2.5</generic-mapper.version>
+		<generic-mapper.version>2.6</generic-mapper.version>
 			...
 	</properties>
 			...
@@ -56,37 +79,6 @@ Than you can add the dependency to your dependencies:
 		</dependencies>
 
 	
-## gradle dependency
-
-Add the following gradle dependency to your project `build.gradle` in the dependencies section if 
-you want to import the core functionality of generic-mapper:
-
-define version in file gradle.properties
-
-```
-genericMapperVersion=2.5
-```
-
-or in build.gradle ext area
-
-```
-ext {
-			...
-    genericMapperVersion = '2.5'
-			...
-}
-```
-
-and then add the dependency to the dependencies area
-
-```
-dependencies {
-			...
-	implementation("io.github.astrapi69:generic-mapper:$genericMapperVersion")
-			...
-}
-```
-
 # Donations
 
 This project is kept as an open source product and relies on contributions to remain being
