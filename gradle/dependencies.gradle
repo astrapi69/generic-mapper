@@ -1,0 +1,10 @@
+dependencies {
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+    implementation("io.github.astrapi69:bean-mapper-api:$beanMapperApiVersion")
+    implementation("org.modelmapper:modelmapper:$modelmapperVersion")
+    implementation("io.github.astrapi69:jobj-core:$jobjCoreVersion")
+    testImplementation("io.github.astrapi69:test-objects:$testObjectsVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
+}
