@@ -1,6 +1,16 @@
 ## Change log
 ----------------------
 
+Version 3
+-------------
+
+CHANGED:
+
+- update jdk version to version 11
+- update gradle version to new version 7.5.1
+- update of dependency bean-mapper-api to new version 2
+- update of test-dependency test-object to new version 7.1
+
 Version 2.6
 -------------
 
@@ -21,20 +31,20 @@ Version 2.5
 -------------
 
 ADDED:
- 
+
 - new test-dependency junit-jupiter (junit 5) in version 5.8.1
 
 CHANGED:
 
 - update gradle to new version 7.2
 - changed to new package io.github.astrapi69
-- remove of test-dependency testng 
+- remove of test-dependency testng
 
 Version 2.4
 -------------
 
 ADDED:
- 
+
 - migrate from maven to gradle as build system
 - changed from old dozer to new model-mapper dependency
 
@@ -47,13 +57,13 @@ Version 2.3
 -------------
 
 ADDED:
-  
+
 - added new bean-mapper-api dependency
 - new factory methods for BeanMappingBuilder and DozerBeanMapper created
 
 CHANGED:
 
-- update factory method newMapper in class AbstractGenericMapper 
+- update factory method newMapper in class AbstractGenericMapper
 - replaced GenericMapper interface with the same name class from the new bean-mapper-api dependency
 - prepare project for migrate to gradle
 - created new unit test class for the class MapperExtensions
@@ -62,7 +72,7 @@ Version 2.2
 -------------
 
 ADDED:
-  
+
 - added new mapping xml file for initialize uuid objects
 
 CHANGED:
@@ -74,7 +84,7 @@ Version 2.1
 -------------
 
 ADDED:
-  
+
 - added new interface DozerGenericMapper which holds dozer specific default methods
 
 CHANGED:
@@ -93,7 +103,7 @@ Version 1.1
 -------------
 
 ADDED:
-  
+
 - added new methods to interface EntityDOMapper toDto and toDtos and tagged methods toDomainObject and toDomainObjects as deprecated
 
 CHANGED:
@@ -105,11 +115,9 @@ Version 1
 -------------
 
 ADDED:
-  
+
 - moved classes from obsolet domain-mapper project
 - this changelog file
 - created PULL_REQUEST_TEMPLATE.md file
 - created CODE_OF_CONDUCT.md file
 - created CONTRIBUTING.md file
-
-

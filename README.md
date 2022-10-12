@@ -2,9 +2,9 @@
 
 <div style="text-align: center">
 
-[![Build Status](https://travis-ci.org/astrapi69/generic-mapper.svg?branch=develop)](https://travis-ci.org/astrapi69/generic-mapper) 
-[![Coverage Status](https://coveralls.io/repos/github/astrapi69/generic-mapper/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/generic-mapper?branch=develop) 
-[![Open Issues](https://img.shields.io/github/issues/astrapi69/generic-mapper.svg?style=flat)](https://github.com/astrapi69/generic-mapper/issues) 
+[![Build Status](https://travis-ci.org/astrapi69/generic-mapper.svg?branch=develop)](https://travis-ci.org/astrapi69/generic-mapper)
+[![Coverage Status](https://coveralls.io/repos/github/astrapi69/generic-mapper/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/generic-mapper?branch=develop)
+[![Open Issues](https://img.shields.io/github/issues/astrapi69/generic-mapper.svg?style=flat)](https://github.com/astrapi69/generic-mapper/issues)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/generic-mapper/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/generic-mapper)
 [![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/generic-mapper.svg)](http://www.javadoc.io/doc/io.github.astrapi69/generic-mapper)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
@@ -36,19 +36,19 @@ you want to import the core functionality of generic-mapper:
 define version in file gradle.properties
 
 ```
-genericMapperVersion=2.6
+genericMapperVersion=3
 ```
 
 or in build.gradle ext area
 
 ```
-    genericMapperVersion = '2.6'
+    genericMapperVersion = '3'
 ```
 
 and then add the dependency to the dependencies area
 
 ```
-	implementation("io.github.astrapi69:generic-mapper:$genericMapperVersion")
+    implementation("io.github.astrapi69:generic-mapper:$genericMapperVersion")
 ```
 
 ## Maven dependency
@@ -60,25 +60,25 @@ Add the following maven dependency to your project `pom.xml` if you want to impo
 
 Than you can add the dependency to your dependencies:
 
-	<properties>
-			...
-		<!-- GENERIC-MAPPER version -->
-		<generic-mapper.version>2.6</generic-mapper.version>
-			...
-	</properties>
-			...
-		<dependencies>
-			...
-			<!-- GENERIC-MAPPER DEPENDENCY -->
-			<dependency>
-				<groupId>io.github.astrapi69</groupId>
-				<artifactId>generic-mapper</artifactId>
-				<version>${generic-mapper.version}</version>
-			</dependency>
-			...
-		</dependencies>
+    <properties>
+            ...
+        <!-- GENERIC-MAPPER version -->
+        <generic-mapper.version>3</generic-mapper.version>
+            ...
+    </properties>
+            ...
+        <dependencies>
+            ...
+            <!-- GENERIC-MAPPER DEPENDENCY -->
+            <dependency>
+                <groupId>io.github.astrapi69</groupId>
+                <artifactId>generic-mapper</artifactId>
+                <version>${generic-mapper.version}</version>
+            </dependency>
+            ...
+        </dependencies>
 
-	
+
 # Donations
 
 This project is kept as an open source product and relies on contributions to remain being
@@ -189,4 +189,3 @@ Do not hesitate to contact the generic-mapper developers with your questions, co
 |[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/generic-mapper.svg)](http://www.javadoc.io/doc/io.github.astrapi69/generic-mapper)|
 |Special thanks to [javadoc.io](http://www.javadoc.io) for providing a free javadoc documentation for open source projects|
 |     <img width=1000/>     |
-

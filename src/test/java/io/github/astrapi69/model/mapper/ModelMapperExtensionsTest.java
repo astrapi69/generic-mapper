@@ -22,7 +22,7 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.bean.mapper;
+package io.github.astrapi69.model.mapper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -31,10 +31,10 @@ import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
-import io.github.astrapi69.bean.mapper.factories.ModelMapperFactory;
-import io.github.astrapi69.test.objects.Member;
-import io.github.astrapi69.test.objects.Person;
-import io.github.astrapi69.test.objects.enums.Gender;
+import io.github.astrapi69.model.mapper.factory.ModelMapperFactory;
+import io.github.astrapi69.test.object.Member;
+import io.github.astrapi69.test.object.Person;
+import io.github.astrapi69.test.object.enumtype.Gender;
 
 public class ModelMapperExtensionsTest
 {

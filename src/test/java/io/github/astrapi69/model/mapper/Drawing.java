@@ -22,7 +22,7 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.bean.mapper;
+package io.github.astrapi69.model.mapper;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -45,7 +45,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class DrawnNumbers
+public class Drawing
 {
 
 	UUID id;

@@ -22,12 +22,13 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.bean.mapper;
+package io.github.astrapi69.model.mapper;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import io.github.astrapi69.bean.mapper.GenericMapper;
 import lombok.NonNull;
 
 import org.modelmapper.ModelMapper;
