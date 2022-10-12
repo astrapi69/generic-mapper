@@ -1,14 +1,15 @@
 ## Change log
 ----------------------
 
-Version 2.7-SNAPSHOT
+Version 3-SNAPSHOT
 -------------
-
 
 CHANGED:
 
-- update jdk version to 11
-- update gradle version to 7.5.1
+- update jdk version to version 11
+- update gradle version to new version 7.5.1
+- update of dependency bean-mapper-api to new version 2
+- update of test-dependency test-object to new version 7.1
 
 Version 2.6
 -------------
