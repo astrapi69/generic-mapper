@@ -36,13 +36,13 @@ you want to import the core functionality of generic-mapper:
 define version in file gradle.properties
 
 ```
-genericMapperVersion=2.6
+genericMapperVersion=3
 ```
 
 or in build.gradle ext area
 
 ```
-    genericMapperVersion = '2.6'
+    genericMapperVersion = '3'
 ```
 
 and then add the dependency to the dependencies area
@@ -63,7 +63,7 @@ Than you can add the dependency to your dependencies:
     <properties>
             ...
         <!-- GENERIC-MAPPER version -->
-        <generic-mapper.version>2.6</generic-mapper.version>
+        <generic-mapper.version>3</generic-mapper.version>
             ...
     </properties>
             ...
