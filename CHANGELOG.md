@@ -9,7 +9,7 @@ CHANGED:
 - update gradle version to 7.6
 - update of gradle-plugin dependency spotless-plugin-gradle in version 6.12.0
 - update of gradle-plugin dependency gradle-versions-plugin in version 0.44.0
-- update of dependency bean-mapper-api to new version 2.2-SNAPSHOT
+- update of dependency bean-mapper-api to new version 2.2
 - lombok is now only test dependency
 
 Version 3
