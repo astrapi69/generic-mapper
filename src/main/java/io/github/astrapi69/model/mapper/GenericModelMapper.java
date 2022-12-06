@@ -24,14 +24,12 @@
  */
 package io.github.astrapi69.model.mapper;
 
-import java.util.ArrayList;
+import io.github.astrapi69.bean.mapper.GenericMapper;
+import org.modelmapper.ModelMapper;
+
 import java.util.Collection;
 import java.util.List;
-
-import io.github.astrapi69.bean.mapper.GenericMapper;
-import lombok.NonNull;
-
-import org.modelmapper.ModelMapper;
+import java.util.Objects;
 
 /**
  * The Interface {@link GenericModelMapper} provides the methods for mapping entities to data
@@ -42,29 +40,8 @@ import org.modelmapper.ModelMapper;
  * @param <DTO>
  *            the generic type of the data transfer object
  */
-public interface GenericModelMapper<ENTITY, DTO> extends GenericMapper<ENTITY, DTO>
+public interface GenericModelMapper<ENTITY, DTO> extends GenericMapper<ENTITY, DTO, ModelMapper>
 {
-
-	/**
-	 * Gets the data transfer object class.
-	 *
-	 * @return the data transfer object class
-	 */
-	Class<DTO> getDtoClass();
-
-	/**
-	 * Gets the entity class.
-	 *
-	 * @return the entity class
-	 */
-	Class<ENTITY> getEntityClass();
-
-	/**
-	 * Gets the mapper.
-	 *
-	 * @return the mapper
-	 */
-	ModelMapper getMapper();
 
 	/**
 	 * Constructs new instances of destinationClass and performs mapping between from source.
@@ -80,9 +57,10 @@ public interface GenericModelMapper<ENTITY, DTO> extends GenericMapper<ENTITY, D
 	 * @return the new instance of destinationClass mapped to source object.
 	 */
 	@Override
-	default <D, S> List<D> map(final @NonNull Collection<S> sources,
-		final @NonNull Class<D> destinationClass)
+	default <D, S> List<D> map(final Collection<S> sources, final Class<D> destinationClass)
 	{
+		Objects.requireNonNull(sources);
+		Objects.requireNonNull(destinationClass);
 		return ModelMapperExtensions.map(getMapper(), sources, destinationClass);
 	}
 
@@ -100,8 +78,10 @@ public interface GenericModelMapper<ENTITY, DTO> extends GenericMapper<ENTITY, D
 	 * @return the new instance of destinationClass mapped to source object.
 	 */
 	@Override
-	default <D, S> D map(final @NonNull S source, final @NonNull Class<D> destinationClass)
+	default <D, S> D map(final S source, final Class<D> destinationClass)
 	{
+		Objects.requireNonNull(source);
+		Objects.requireNonNull(destinationClass);
 		return ModelMapperExtensions.map(getMapper(), source, destinationClass);
 	}
 
@@ -109,80 +89,20 @@ public interface GenericModelMapper<ENTITY, DTO> extends GenericMapper<ENTITY, D
 	 * {@inheritDoc}
 	 */
 	@Override
-	default DTO toDto(final @NonNull ENTITY entity)
+	default DTO toDto(final ENTITY entity)
 	{
-		return getMapper().map(entity, getDtoClass());
+		Objects.requireNonNull(entity);
+		return map(entity, getDtoClass());
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	default List<DTO> toDtos(final @NonNull Collection<ENTITY> entities)
+	default ENTITY toEntity(final DTO dto)
 	{
-		final List<DTO> domainObjects = new ArrayList<>();
-		if (!entities.isEmpty())
-		{
-			for (final ENTITY entity : entities)
-			{
-				domainObjects.add(toDto(entity));
-			}
-		}
-		return domainObjects;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	default List<DTO> toDtos(final @NonNull Iterable<ENTITY> entities)
-	{
-		final List<DTO> domainObjects = new ArrayList<>();
-		for (final ENTITY entity : entities)
-		{
-			domainObjects.add(toDto(entity));
-		}
-		return domainObjects;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	default List<ENTITY> toEntities(final @NonNull Collection<DTO> dtos)
-	{
-		final List<ENTITY> entities = new ArrayList<>();
-		if (!dtos.isEmpty())
-		{
-			for (final DTO dto : dtos)
-			{
-				entities.add(toEntity(dto));
-			}
-		}
-		return entities;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	default List<ENTITY> toEntities(final @NonNull Iterable<DTO> dtos)
-	{
-		final List<ENTITY> entities = new ArrayList<>();
-		for (final DTO dto : dtos)
-		{
-			entities.add(toEntity(dto));
-		}
-		return entities;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	default ENTITY toEntity(final @NonNull DTO dto)
-	{
-		return getMapper().map(dto, getEntityClass());
+		Objects.requireNonNull(dto);
+		return map(dto, getEntityClass());
 	}
 
 }
