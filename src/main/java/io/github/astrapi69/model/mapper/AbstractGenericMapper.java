@@ -24,10 +24,6 @@
  */
 package io.github.astrapi69.model.mapper;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.experimental.FieldDefaults;
-
 import org.modelmapper.ModelMapper;
 
 import io.github.astrapi69.model.mapper.factory.ModelMapperFactory;
@@ -42,8 +38,6 @@ import io.github.astrapi69.lang.TypeArgumentsExtensions;
  * @param <DO>
  *            the generic type
  */
-@Getter
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public abstract class AbstractGenericMapper<E, DO> implements GenericModelMapper<E, DO>
 {
 
@@ -51,20 +45,20 @@ public abstract class AbstractGenericMapper<E, DO> implements GenericModelMapper
 	 * The data transfer object class.
 	 */
 	@SuppressWarnings("unchecked")
-	Class<DO> dtoClass = (Class<DO>)TypeArgumentsExtensions
+	private final Class<DO> dtoClass = (Class<DO>)TypeArgumentsExtensions
 		.getTypeArgument(AbstractGenericMapper.class, this.getClass(), 1);
 
 	/**
 	 * The entity class.
 	 */
 	@SuppressWarnings("unchecked")
-	Class<E> entityClass = (Class<E>)TypeArgumentsExtensions
+	private final Class<E> entityClass = (Class<E>)TypeArgumentsExtensions
 		.getTypeArgument(AbstractGenericMapper.class, this.getClass(), 0);
 
 	/**
 	 * The mapper instance.
 	 */
-	ModelMapper mapper;
+	private final ModelMapper mapper;
 
 	/**
 	 * Instantiates a new {@link AbstractGenericMapper} object
@@ -79,4 +73,18 @@ public abstract class AbstractGenericMapper<E, DO> implements GenericModelMapper
 		return ModelMapperFactory.newModelMapper();
 	}
 
+	public Class<DO> getDtoClass()
+	{
+		return dtoClass;
+	}
+
+	public Class<E> getEntityClass()
+	{
+		return entityClass;
+	}
+
+	public ModelMapper getMapper()
+	{
+		return mapper;
+	}
 }
