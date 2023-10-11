@@ -1,8 +1,21 @@
 ## Change log
 ----------------------
 
-Version 3.2-SNAPSHOT
+Version 4-SNAPSHOT
 -------------
+
+CHANGED:
+
+- update jdk version to version 17
+- update gradle version to new version 8.4
+- update of lombok to new version 1.18.30
+- update of gradle-plugin dependency 'io.freefair.gradle:lombok-plugin' to new version 8.3
+- update of gradle-plugin com.github.ben-manes.versions to version 0.49.0
+- update of gradle-plugin dependency 'org.ajoberstar.grgit:grgit-gradle' to new version 5.2.0
+- update of gradle-plugin dependency spotless-plugin-gradle in version 6.22.0
+- update of dependency modelmapper to version 3.1.1
+- update of dependency jobj-core version to 8.1
+- update of test dependency junit-jupiter to new release candidate version 5.10.0
 
 Version 3.1
 -------------

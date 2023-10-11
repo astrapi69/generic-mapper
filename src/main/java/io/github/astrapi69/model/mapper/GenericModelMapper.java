@@ -24,12 +24,13 @@
  */
 package io.github.astrapi69.model.mapper;
 
-import io.github.astrapi69.bean.mapper.GenericMapper;
-import org.modelmapper.ModelMapper;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+
+import org.modelmapper.ModelMapper;
+
+import io.github.astrapi69.bean.mapper.GenericMapper;
 
 /**
  * The Interface {@link GenericModelMapper} provides the methods for mapping entities to data

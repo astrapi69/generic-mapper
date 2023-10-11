@@ -26,8 +26,8 @@ package io.github.astrapi69.model.mapper;
 
 import org.modelmapper.ModelMapper;
 
-import io.github.astrapi69.model.mapper.factory.ModelMapperFactory;
 import io.github.astrapi69.lang.TypeArgumentsExtensions;
+import io.github.astrapi69.model.mapper.factory.ModelMapperFactory;
 
 /**
  * The abstract class {@link AbstractGenericMapper} provides an base implementation for mapping
