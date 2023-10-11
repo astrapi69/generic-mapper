@@ -25,7 +25,6 @@
 package io.github.astrapi69.model.mapper.factory;
 
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.modelmapper.spi.MatchingStrategy;
 
 public class ModelMapperFactory
