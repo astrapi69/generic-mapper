@@ -25,6 +25,8 @@
 package io.github.astrapi69.model.mapper.factory;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
+import org.modelmapper.spi.MatchingStrategy;
 
 public class ModelMapperFactory
 {
@@ -39,6 +41,20 @@ public class ModelMapperFactory
 	public static ModelMapper newModelMapper()
 	{
 		return new ModelMapper();
+	}
+
+	/**
+	 * Factory method for creating the new {@link ModelMapper} for the mapping process. This method
+	 * is invoked in the constructor and can be overridden so users can provide their own mapping
+	 * process
+	 *
+	 * @return the new {@link ModelMapper} for the mapping process
+	 */
+	public static ModelMapper newModelMapper(MatchingStrategy matchingStrategy)
+	{
+		ModelMapper modelMapper = newModelMapper();
+		modelMapper.getConfiguration().setMatchingStrategy(matchingStrategy);
+		return modelMapper;
 	}
 
 }

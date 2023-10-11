@@ -14,6 +14,7 @@ CHANGED:
 - update of gradle-plugin dependency 'org.ajoberstar.grgit:grgit-gradle' to new version 5.2.0
 - update of gradle-plugin dependency spotless-plugin-gradle in version 6.22.0
 - update of dependency modelmapper to version 3.1.1
+- update of dependency bean-mapper-api to new version 2.3
 - update of dependency jobj-core version to 8.1
 - update of test dependency junit-jupiter to new release candidate version 5.10.0
 

@@ -65,7 +65,12 @@ public abstract class AbstractGenericMapper<E, DO> implements GenericModelMapper
 	 */
 	public AbstractGenericMapper()
 	{
-		mapper = newModelMapper();
+		mapper = newMapper();
+	}
+
+	public ModelMapper newMapper()
+	{
+		return newModelMapper();
 	}
 
 	protected ModelMapper newModelMapper()
