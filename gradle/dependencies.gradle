@@ -1,10 +1,11 @@
 dependencies {
-    implementation("io.github.astrapi69:bean-mapper-api:$beanMapperApiVersion")
-    implementation("org.modelmapper:modelmapper:$modelmapperVersion")
-    implementation("io.github.astrapi69:jobj-core:$jobjCoreVersion")
-    testCompileOnly("org.projectlombok:lombok:$lombokVersion")
-    testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
-    testImplementation("io.github.astrapi69:test-object:$testObjectVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
+    implementation libs.bean.mapper.api
+    implementation libs.modelmapper
+    implementation libs.jobj.core
+
+    testCompileOnly libs.lombok
+    testAnnotationProcessor libs.lombok
+    // Note: use of bundles...
+    testImplementation libs.bundles.unit.testing
+    testRuntimeOnly libs.junit.platform.launcher
 }
