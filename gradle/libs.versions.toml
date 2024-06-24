@@ -6,12 +6,12 @@ gradle-plugin-lombok-version = "8.6"
 gradle-plugin-spotless-version = "7.0.0.BETA1"
 gradle-plugin-version-catalog-update-version = "0.8.4"
 gradle-plugin-versions-version = "0.51.0"
-jobj-core-version = "8.1"
+jobj-core-version = "8.2"
 junit-jupiter-version = "5.11.0-M2"
 junit-platform-launcher-version = "1.11.0-M2"
-lombok-version = "1.18.30"
-modelmapper-version = "3.1.1"
-test-object-version = "7.2"
+lombok-version = "1.18.32"
+modelmapper-version = "3.2.0"
+test-object-version = "8.2"
 
 [libraries]
 bean-mapper-api = { module = "io.github.astrapi69:bean-mapper-api", version.ref = "bean-mapper-api-version" }
