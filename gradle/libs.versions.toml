@@ -1,28 +1,46 @@
 [versions]
 bean-mapper-api-version = "2.3"
-gradle-plugin-grgit-version = "5.2.2"
+gradle-plugin-grgit-version = "5.3.0"
 gradle-plugin-license-version = "0.16.1"
-gradle-plugin-lombok-version = "8.6"
-gradle-plugin-spotless-version = "7.0.0.BETA1"
+gradle-plugin-lombok-version = "8.10.2"
+gradle-plugin-spotless-version = "7.0.0.BETA3"
 gradle-plugin-version-catalog-update-version = "0.8.4"
 gradle-plugin-versions-version = "0.51.0"
-jobj-core-version = "8.2"
-junit-jupiter-version = "5.11.0-M2"
-junit-platform-launcher-version = "1.11.0-M2"
-lombok-version = "1.18.32"
-modelmapper-version = "3.2.0"
-test-object-version = "8.2"
+jobj-core-version = "9.1"
+junit-jupiter-version = "5.11.2"
+lombok-version = "1.18.34"
+modelmapper-version = "3.2.1"
+test-object-version = "9"
 
 [libraries]
 bean-mapper-api = { module = "io.github.astrapi69:bean-mapper-api", version.ref = "bean-mapper-api-version" }
 jobj-core = { module = "io.github.astrapi69:jobj-core", version.ref = "jobj-core-version" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter-version" }
-junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform-launcher-version" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok-version" }
 modelmapper = { module = "org.modelmapper:modelmapper", version.ref = "modelmapper-version" }
 test-object = { module = "io.github.astrapi69:test-object", version.ref = "test-object-version" }
 
 [bundles]
+# The core dependencies
+core-dependencies = [
+    "bean-mapper-api",
+    "jobj-core",
+    "modelmapper",
+]
+# Annotation processor dependencies used specifically for test classes
+test-annotation-processor = [
+    "lombok",
+]
+# Dependencies required only at test compile-time and not included in test runtime
+test-compile-only = [
+    "lombok",
+]
+# Dependencies required only at test runtime, such as test execution platforms
+test-runtime-only = [
+    "junit-platform-launcher",
+]
+# Dependencies required for unit testing
 unit-testing = [
     "junit-jupiter",
     "test-object",

@@ -10,15 +10,17 @@ ADDED:
 
 CHANGED:
 
-- update gradle version to new version 8.8
-- update of lombok to new version 1.18.32
-- update of gradle-plugin dependency 'io.freefair.gradle:lombok-plugin' to new version 8.6
+- update gradle version to new version 8.10.2
+- update of lombok to new version 1.18.34
+- update of gradle-plugin dependency 'io.freefair.gradle:lombok-plugin' to new version 8.10.2
 - update of gradle-plugin com.github.ben-manes.versions to version 0.51.0
-- update of gradle-plugin dependency 'org.ajoberstar.grgit:grgit-gradle' to new version 5.2.2
-- update of gradle-plugin dependency spotless-plugin-gradle in version 7.0.0.BETA1
-- update of dependency jobj-core version to 8.2
-- update of dependency modelmapper to version 3.2.0
-- update of test-dependency test-object to new version 8.2
+- update of gradle-plugin dependency 'org.ajoberstar.grgit:grgit-gradle' to new version 5.3.0
+- update of gradle-plugin dependency spotless-plugin-gradle in version 7.0.0.BETA3
+- update of dependency jobj-core version to 9.1
+- update of dependency modelmapper to version 3.2.1
+- update of test-dependency test-object to new version 9
+- update of test dependency junit-jupiter to new version 5.11.2
+- dependencies are managed now over bundles
 
 Version 4
 -------------

@@ -1,11 +1,10 @@
 dependencies {
-    implementation libs.bean.mapper.api
-    implementation libs.modelmapper
-    implementation libs.jobj.core
-
-    testCompileOnly libs.lombok
-    testAnnotationProcessor libs.lombok
     // Note: use of bundles...
+    testAnnotationProcessor libs.bundles.test.annotation.processor
+    testCompileOnly libs.bundles.test.compile.only
+
+    implementation libs.bundles.core.dependencies
+
     testImplementation libs.bundles.unit.testing
-    testRuntimeOnly libs.junit.platform.launcher
+    testRuntimeOnly libs.bundles.test.runtime.only
 }
