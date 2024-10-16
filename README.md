@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.org/astrapi69/generic-mapper.svg?branch=develop)](https://travis-ci.org/astrapi69/generic-mapper)
 [![Coverage Status](https://coveralls.io/repos/github/astrapi69/generic-mapper/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/generic-mapper?branch=develop)
 [![Open Issues](https://img.shields.io/github/issues/astrapi69/generic-mapper.svg?style=flat)](https://github.com/astrapi69/generic-mapper/issues)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/generic-mapper/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/generic-mapper)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.astrapi69/generic-mapper?style=plastic)](https://search.maven.org/artifact/io.github.astrapi69/generic-mapper)
 [![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/generic-mapper.svg)](http://www.javadoc.io/doc/io.github.astrapi69/generic-mapper)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 
@@ -28,56 +28,136 @@ No animals were harmed in the making of this library.
 
 The source code comes under the liberal MIT License
 
+## Import dependencies to your project
+
+<details>
+  <summary>gradle (click to expand)</summary>
+
 ## gradle dependency
 
-Add the following gradle dependency to your project `build.gradle` in the dependencies section if
-you want to import the core functionality of generic-mapper:
+Replace the variable ${latestVersion} with the current latest
+version: [![Maven Central](https://img.shields.io/maven-central/v/io.github.astrapi69/generic-mapper?style=plastic)](https://search.maven.org/artifact/io.github.astrapi69/generic-mapper)
+
+You can first define the version in the ext section and add than the following gradle dependency to
+your project `build.gradle` if you want to import the core functionality of generic-mapper:
 
 define version in file gradle.properties
 
 ```
-genericMapperVersion=4
+genericMapperVersion=${latestVersion}
 ```
 
 or in build.gradle ext area
 
 ```
-    genericMapperVersion = '4'
+    genericMapperVersion = "${latestVersion}"
 ```
 
-and then add the dependency to the dependencies area
+then add the dependency to the dependencies area
 
 ```
     implementation("io.github.astrapi69:generic-mapper:$genericMapperVersion")
 ```
 
+# with new libs.versions.toml file
+
+If you use the new libs.versions.toml file for new automatic catalog versions update
+
+```
+[versions]
+```
+```
+generic-mapper-version= "${latestVersion}"
+```
+```
+[libraries]
+```
+```
+generic-mapper = { module = "io.github.astrapi69:generic-mapper", version.ref = "generic-mapper-version" }
+```
+
+then add the dependency to the dependencies area
+
+```
+    implementation libs.generic.mapper
+```
+
+</details>
+
+<details>
+  <summary>Maven (click to expand)</summary>
+
 ## Maven dependency
 
 Maven dependency is now on sonatype.
-Check out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~generic-mapper~~~) for latest snapshots and releases.
+Check
+out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~generic-mapper~~~)
+for latest snapshots and releases.
 
-Add the following maven dependency to your project `pom.xml` if you want to import the core functionality of generic-mapper:
+Add the following maven dependency to your project `pom.xml` if you want to import the core
+functionality of generic-mapper:
 
-Than you can add the dependency to your dependencies:
+Then you can add the dependency to your dependencies:
 
     <properties>
-            ...
-        <!-- GENERIC-MAPPER version -->
-        <generic-mapper.version>4</generic-mapper.version>
-            ...
+        ...
+
+```xml
+        <!-- generic-mapper version -->
+        <generic-mapper.version>${latestVersion}</generic-mapper.version>
+```
+
+        ...
     </properties>
-            ...
+        ...
         <dependencies>
-            ...
-            <!-- GENERIC-MAPPER DEPENDENCY -->
+        ...
+
+```xml
+            <!-- generic-mapper DEPENDENCY -->
             <dependency>
                 <groupId>io.github.astrapi69</groupId>
                 <artifactId>generic-mapper</artifactId>
                 <version>${generic-mapper.version}</version>
             </dependency>
-            ...
+```
+
+        ...
         </dependencies>
 
+</details>
+
+
+<details>
+  <summary>Snapshots (click to expand)</summary>
+
+## 📸 Snapshots
+
+[![Snapshot](https://img.shields.io/badge/dynamic/xml?url=https://oss.sonatype.org/service/local/repositories/snapshots/content/io/github/astrapi69/generic-mapper/maven-metadata.xml&label=snapshot&color=red&query=.//versioning/latest)](https://oss.sonatype.org/content/repositories/snapshots/io/github/astrapi69/generic-mapper/)
+
+This section describes how to import snapshot versions into your project.
+Add the following code snippet to your gradle file in the repositories section:
+
+```
+repositories {
+   //...
+```
+
+```groovy
+    maven {
+        name "Sonatype Nexus Snapshots"
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+        mavenContent {
+            snapshotsOnly()
+        }
+    }
+```
+
+```
+}
+```
+
+</details>
 
 # Donations
 
