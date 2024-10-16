@@ -26,8 +26,8 @@ package io.github.astrapi69.model.mapper;
 
 import org.modelmapper.ModelMapper;
 
-import io.github.astrapi69.model.mapper.factory.ModelMapperFactory;
 import io.github.astrapi69.lang.TypeArgumentsExtensions;
+import io.github.astrapi69.model.mapper.factory.ModelMapperFactory;
 
 /**
  * The abstract class {@link AbstractGenericMapper} provides an base implementation for mapping
@@ -65,24 +65,52 @@ public abstract class AbstractGenericMapper<E, DO> implements GenericModelMapper
 	 */
 	public AbstractGenericMapper()
 	{
-		mapper = newModelMapper();
+		mapper = newMapper();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ModelMapper newMapper()
+	{
+		return newModelMapper();
+	}
+
+	/**
+	 * Factory method for creating the new {@link ModelMapper} for the mapping process. This method
+	 * is invoked in the constructor and can be overridden so users can provide their own mapping
+	 * process
+	 *
+	 * @return the new {@link ModelMapper} for the mapping process
+	 */
 	protected ModelMapper newModelMapper()
 	{
 		return ModelMapperFactory.newModelMapper();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public Class<DO> getDtoClass()
 	{
 		return dtoClass;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public Class<E> getEntityClass()
 	{
 		return entityClass;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public ModelMapper getMapper()
 	{
 		return mapper;
